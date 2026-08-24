@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Taller Integrado · Ley 21.719 — Pitch final</title>
+<title>Clario · Ley 21.719 — Pitch final</title>
 <style>
 /* ============================================================
    TIPOGRAFÍA DE TÍTULOS — Space Grotesk (OFL), subset latino.
@@ -31,7 +31,7 @@
   --ink:       #26211C;  /* texto principal */
   --ink-2:     #6B655C;  /* texto secundario */
   --accent:    #1B5FD9;  /* azul eléctrico: números, cifras, elementos clave */
-  --olive:     #5B6B4F;  /* verde oliva: badges "real", checks */
+  --olive:     #5B6B4F;  /* verde oliva: checks de "lo que sabemos" */
   --risk:      #A13D3D;  /* rojo apagado: pendientes y placeholders */
   --line:      #E3DACD;  /* líneas y separadores */
   --accent-bg: rgba(27,95,217,.08);
@@ -52,7 +52,7 @@
   --nav-h:  clamp(44px, 6.4vh, 58px);   /* sólo móvil */
   --sp:     clamp(9px, 1.55vh, 18px);
   --pad-x:  clamp(18px, 4vw, 64px);
-  --f-hero: clamp(32px, 7.4vh, 70px);
+  --f-hero: clamp(38px, 9.8vh, 92px);
   --f-h2:   clamp(23px, 4.5vh, 44px);
   --f-h3:   clamp(15px, 2.3vh, 20px);
   --f-body: clamp(13px, 1.85vh, 17px);
@@ -137,8 +137,9 @@ ul,ol{ padding:0; list-style:none; }
   transition:background-color .4s ease, border-color .4s ease;
 }
 .rail__marca{
-  display:flex; align-items:flex-start; gap:.65em;
-  font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
+  display:flex; align-items:flex-start; gap:.6em;
+  /* el nombre oficial es largo: menos tracking para que ocupe menos líneas */
+  font-size:var(--f-xs); letter-spacing:.09em; text-transform:uppercase;
   color:var(--ink-2); font-weight:650; line-height:1.45;
   transition:color .4s ease;
 }
@@ -148,7 +149,7 @@ ul,ol{ padding:0; list-style:none; }
 }
 .rail__lista{ display:flex; flex-direction:column; gap:clamp(1px,.45vh,5px); }
 .rail__item{
-  display:grid; grid-template-columns:16px 17px minmax(0,1fr); gap:.55em;
+  display:grid; grid-template-columns:16px 24px minmax(0,1fr); gap:.5em;
   align-items:center; padding:.5em 0; text-decoration:none; color:var(--ink-2);
 }
 .rail__item .dash{
@@ -208,7 +209,6 @@ main{ margin-left:var(--rail-w); }
 }
 /* Las tarjetas oscuras llevan un brillo diagonal muy leve, como en la referencia */
 .sec--dark .caja,
-.sec--dark .tarjeta,
 .sec--dark .panel,
 .sec--dark .equipo li,
 .sec--dark .caja3,
@@ -249,14 +249,6 @@ main{ margin-left:var(--rail-w); }
 }
 .mark::before{ content:""; width:4px; height:4px; border-radius:50%; background:currentColor; }
 
-.badge{
-  display:inline-flex; align-items:center; gap:.45em;
-  font-size:var(--f-xs); letter-spacing:.12em; text-transform:uppercase;
-  font-weight:650; border-radius:999px; padding:.28em .7em;
-}
-.badge::before{ content:""; width:5px; height:5px; border-radius:50%; background:currentColor; }
-.badge--real{ color:var(--olive); background:var(--olive-bg); }
-.badge--sint{ color:var(--ink-2); background:var(--neutral-bg); }
 
 .k{ color:var(--ink-2); font-size:var(--f-sm); }
 
@@ -299,24 +291,39 @@ main{ margin-left:var(--rail-w); }
   color:var(--ink-2); border:1px solid var(--line); border-radius:999px;
   padding:.4em 1em; background:var(--bg-alt);
 }
+.logo-lockup{
+  margin-top:calc(var(--sp)*1.6);
+  display:flex; flex-direction:column; align-items:center; gap:calc(var(--sp)*1.1);
+}
+.logo{
+  width:auto; height:clamp(46px,8.6vh,80px); color:var(--ink);
+}
 .hero__title{
   font-family:var(--display);
-  margin-top:calc(var(--sp)*1.8);
   font-size:var(--f-hero); font-weight:700; letter-spacing:-.034em; line-height:1.02;
 }
-.hero__sub{ margin-top:calc(var(--sp)*.9); color:var(--ink-2); max-width:52ch; margin-inline:auto; }
+.hero__sub{
+  margin-top:calc(var(--sp)*1.3); margin-inline:auto; max-width:44ch;
+  font-size:clamp(15px,2.7vh,24px); line-height:1.34; letter-spacing:-.012em;
+  color:var(--ink-2);
+}
+/* Créditos: bloque aparte, separado por una línea y con dos niveles propios */
+.hero__creditos{
+  margin:calc(var(--sp)*2.8) auto 0; max-width:640px;
+  padding-top:calc(var(--sp)*1.5); border-top:1px solid var(--line);
+  display:grid; gap:calc(var(--sp)*.85);
+}
+.hero__programa{
+  font-size:var(--f-xs); letter-spacing:.19em; text-transform:uppercase;
+  color:var(--ink-2); line-height:1.5;
+}
+.hero__equipo{
+  display:flex; justify-content:center; align-items:center; flex-wrap:wrap;
+  gap:.45em .85em; color:var(--ink);
+  font-size:clamp(13px,1.95vh,17px); font-weight:500; letter-spacing:-.005em;
+}
+.hero__equipo .sep{ color:var(--ink-2); opacity:.5; }
 .hero__marks{ margin-top:calc(var(--sp)*1.1); display:flex; justify-content:center; gap:.5em; flex-wrap:wrap; }
-.equipo{
-  margin-top:calc(var(--sp)*2.4);
-  display:grid; grid-template-columns:repeat(4,1fr); gap:calc(var(--sp)*.7);
-}
-.equipo li{
-  background:var(--bg-alt); border:1px solid var(--line); border-radius:var(--r);
-  padding:calc(var(--sp)*1.1) calc(var(--sp)*1); text-align:left;
-}
-.equipo .idx{ color:var(--accent); font-size:var(--f-xs); font-weight:700; letter-spacing:.1em; }
-.equipo .nom{ font-family:var(--display); font-weight:600; font-size:var(--f-h3); letter-spacing:-.01em; margin-top:.2em; }
-.equipo .rol{ color:var(--ink-2); font-size:var(--f-sm); margin-top:.25em; }
 .hero__pie{
   margin-top:calc(var(--sp)*1.8); display:flex; justify-content:center; align-items:center;
   gap:calc(var(--sp)*1.4); flex-wrap:wrap; color:var(--ink-2); font-size:var(--f-sm);
@@ -333,55 +340,30 @@ main{ margin-left:var(--rail-w); }
 .panel{
   padding:calc(var(--sp)*1.4); border:1px solid var(--line); border-radius:var(--r);
 }
-.panel--grieta{ border-color:var(--accent); box-shadow:inset 3px 0 0 var(--accent); }
-.panel__top{ display:flex; align-items:center; gap:.7em; flex-wrap:wrap; }
 .panel__tit{ font-family:var(--display); font-size:var(--f-h3); font-weight:650; letter-spacing:-.01em; }
 .panel__frase{ margin-top:calc(var(--sp)*1); font-size:calc(var(--f-body)*1.12); line-height:1.4; }
-.lista-corta{ margin-top:calc(var(--sp)*1.1); display:grid; gap:calc(var(--sp)*.75); }
-.lista-corta li{ padding-left:1.15em; position:relative; color:var(--ink-2); }
-.lista-corta li::before{
-  content:""; position:absolute; left:0; top:.62em; width:.5em; height:1px; background:var(--accent);
-}
-.nota-tiempo{
-  margin-top:calc(var(--sp)*1.4); display:flex; align-items:center; gap:.6em;
-  color:var(--ink-2); font-size:var(--f-sm);
-}
-.nota-tiempo .i{ font-size:14px; }
 
 /* ============================================================
-   02 · SEGMENTO — grilla de tarjetas + tarjeta destacada
+   02 · SEGMENTO — siete sectores evaluados + el elegido
    ============================================================ */
-.grid-seg{
-  display:grid; grid-template-columns:repeat(4,1fr);
-  grid-auto-rows:1fr; gap:calc(var(--sp)*.9);
+.sectores{ display:grid; grid-template-columns:repeat(7,1fr); gap:calc(var(--sp)*.7); }
+.sector{
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  padding:calc(var(--sp)*1.1) calc(var(--sp)*.55);
+  border:1px solid var(--line); border-radius:var(--r-sm); background:var(--bg-alt);
+  color:var(--ink-2); font-size:var(--f-sm); line-height:1.25;
 }
-.tarjeta{
-  border:1px solid var(--line); border-radius:var(--r);
-  padding:calc(var(--sp)*1.05);
-  display:flex; flex-direction:column; gap:.45em;
+.elegido{
+  margin-top:calc(var(--sp)*1.1);
+  padding:calc(var(--sp)*2) calc(var(--sp)*1.9);
+  border:1px solid var(--accent); border-radius:var(--r); background:var(--accent-bg);
+  display:flex; flex-direction:column; gap:.55em;
 }
-.tarjeta__top{ display:flex; justify-content:space-between; align-items:center; gap:.5em; }
-.tarjeta__n{ color:var(--accent); font-size:var(--f-xs); font-weight:700; letter-spacing:.1em; }
-.tarjeta__tit{ font-family:var(--display); font-size:var(--f-h3); font-weight:600; letter-spacing:-.01em; line-height:1.15; }
-.tarjeta__txt{ color:var(--ink-2); font-size:var(--f-sm); line-height:1.45; }
-.tarjeta--elegida{
-  grid-column:3 / span 2; grid-row:1 / span 2;
-  border:1px solid var(--accent); background:var(--accent-bg);
-  justify-content:center; gap:.7em; padding:calc(var(--sp)*1.5);
+.elegido h3{
+  font-family:var(--display); font-size:calc(var(--f-h2)*.82);
+  font-weight:650; letter-spacing:-.018em; line-height:1.1;
 }
-.tarjeta--elegida .tarjeta__tit{ font-size:calc(var(--f-h3)*1.5); line-height:1.05; }
-.tarjeta--elegida .tarjeta__top{ justify-content:flex-start; gap:.7em; }
-.sello{
-  display:inline-flex; align-items:center; gap:.5em; align-self:flex-start;
-  background:var(--accent); color:var(--bg);
-  font-size:var(--f-xs); letter-spacing:.14em; text-transform:uppercase;
-  font-weight:700; padding:.35em .8em; border-radius:999px;
-}
-.sello .i{ font-size:12px; stroke-width:2; }
-.leyenda{
-  margin-top:calc(var(--sp)*1.2); display:flex; gap:calc(var(--sp)*1.2);
-  align-items:center; flex-wrap:wrap; color:var(--ink-2); font-size:var(--f-sm);
-}
+.elegido p{ color:var(--ink-2); }
 
 /* ============================================================
    03 · HALLAZGO — sección de mayor peso visual
@@ -406,17 +388,11 @@ main{ margin-left:var(--rail-w); }
   color:var(--ink-2); font-size:var(--f-sm);
 }
 .cita__meta .quien{ color:var(--ink); font-weight:600; }
-.cambio{
-  margin-top:calc(var(--sp)*1.5);
-  display:grid; grid-template-columns:auto minmax(0,2.1fr); gap:calc(var(--sp)*1.4);
-  align-items:start;
+.cita-nota{
+  margin-top:calc(var(--sp)*1.6); color:var(--ink-2);
+  font-size:var(--f-sm); max-width:78ch; line-height:1.5;
 }
-.cambio__tit{
-  display:flex; align-items:center; gap:.5em;
-  font-size:var(--f-sm); letter-spacing:.16em; text-transform:uppercase;
-  color:var(--accent); font-weight:700; white-space:nowrap;
-}
-.cambio__txt{ font-size:calc(var(--f-body)*1.08); max-width:78ch; }
+.cita-nota em{ font-family:var(--serif); font-style:italic; }
 
 /* ============================================================
    04 · PROPUESTA
@@ -453,7 +429,90 @@ main{ margin-left:var(--rail-w); }
 }
 
 /* ============================================================
-   05 y 06 · VIABILIDAD — slides de una sola cifra protagonista
+   PIEZAS COMPARTIDAS DE CONTENIDO REAL
+   ============================================================ */
+/* Referencia legal discreta junto a un derecho o exigencia */
+.art{
+  display:inline-block; white-space:nowrap;
+  font-size:var(--f-xs); letter-spacing:.08em; font-weight:650;
+  color:var(--accent); background:var(--accent-bg);
+  border-radius:999px; padding:.22em .6em;
+}
+.col p{ font-size:var(--f-body); }
+.col p + p{ margin-top:.6em; }
+
+
+/* 04 · lo que la persona puede hacer */
+.boton-ctx{ color:var(--ink-2); font-size:var(--f-sm); }
+.boton-demo{
+  display:inline-flex; align-items:center; gap:.6em;
+  margin-top:calc(var(--sp)*.8);
+  background:var(--accent); color:var(--bg);
+  font-weight:650; font-size:calc(var(--f-body)*1.02); letter-spacing:-.005em;
+  padding:.72em 1.15em; border-radius:999px;
+}
+.boton-demo .i{ font-size:15px; stroke-width:2; }
+.acciones{ margin-top:calc(var(--sp)*1.2); display:grid; }
+.acciones li{
+  display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:.7em;
+  align-items:center; padding:calc(var(--sp)*.6) 0;
+  border-bottom:1px solid var(--line); font-size:var(--f-body);
+}
+.acciones li:last-child{ border-bottom:0; }
+.acciones .i{ font-size:15px; color:var(--accent); }
+
+/* 05 · alternativas */
+.chips{ display:flex; flex-wrap:wrap; gap:.45em; align-items:center; }
+.chip{
+  font-size:var(--f-xs); letter-spacing:.06em; color:var(--ink-2);
+  border:1px solid var(--line); border-radius:999px; padding:.28em .7em;
+  background:var(--bg-alt);
+}
+.bloque-chips{
+  margin-top:calc(var(--sp)*1.3); display:flex; gap:calc(var(--sp)*1.1);
+  align-items:center; flex-wrap:wrap;
+}
+.bloque-chips .lbl{
+  font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-2); font-weight:700; white-space:nowrap;
+}
+.nota-fuente{ margin-top:calc(var(--sp)*1.1); display:flex; gap:.6em; align-items:flex-start; }
+.nota-fuente .i{ font-size:14px; color:var(--risk); flex:none; margin-top:.15em; }
+
+/* Tabla compacta (vuelve para el cuadro de alternativas) */
+.tabla-wrap{ margin-top:calc(var(--sp)*1.4); overflow-x:auto; }
+table{ width:100%; border-collapse:collapse; font-size:var(--f-sm); }
+th,td{
+  text-align:left; padding:calc(var(--sp)*.62) calc(var(--sp)*.8);
+  border-bottom:1px solid var(--line); vertical-align:top;
+}
+thead th{
+  font-size:var(--f-xs); letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-2); font-weight:650; border-bottom:1px solid var(--ink-2);
+}
+tbody th{ font-weight:650; color:var(--ink); width:22%; }
+td{ color:var(--ink-2); }
+tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
+
+/* 06 · los cinco elementos de diferenciación */
+.dif{ display:grid; grid-template-columns:repeat(5,1fr); gap:calc(var(--sp)*.8); }
+.dif li{
+  display:flex; flex-direction:column; gap:.45em;
+  padding:calc(var(--sp)*1); background:var(--bg-alt);
+  border:1px solid var(--line); border-radius:var(--r);
+}
+.dif .np{
+  color:var(--accent); font-size:var(--f-xs); font-weight:700; letter-spacing:.12em;
+  font-variant-numeric:tabular-nums;
+}
+.dif h3{
+  font-family:var(--display); font-size:var(--f-h3); font-weight:650;
+  letter-spacing:-.01em; line-height:1.15;
+}
+.dif p{ color:var(--ink-2); font-size:var(--f-sm); line-height:1.4; }
+
+/* ============================================================
+   07 y 08 · VIABILIDAD — slides de una sola cifra protagonista
    Regla: un único número grande por slide. Todo lo demás cede.
    ============================================================ */
 .cifra-lead{
@@ -562,19 +621,17 @@ main{ margin-left:var(--rail-w); }
   .progreso{ left:0; top:calc(var(--nav-h) - 2px); width:var(--p,0%); height:2px; transition:width .12s linear; }
   .contraste{ grid-template-columns:1fr; }
   .contraste__flecha{ transform:rotate(90deg); padding:6px 0; }
-  .grid-seg{ grid-template-columns:repeat(2,1fr); grid-auto-rows:auto; }
-  .tarjeta--elegida{ grid-column:1 / -1; grid-row:auto; }
-  .equipo{ grid-template-columns:repeat(2,1fr); }
+  .sectores{ grid-template-columns:repeat(2,1fr); }
   .cita-bloque{ grid-template-columns:1fr; }
   .comilla{ display:none; }
-  .cambio, .propuesta, .columnas, .cajas-3{ grid-template-columns:1fr; }
+  .cambio, .propuesta, .columnas, .cajas-3, .actores, .dif{ grid-template-columns:1fr; }
   /* La cifra protagonista se escala por ancho: en vertical no cabe a la altura del viewport */
   .cifra-hero{ font-size:clamp(30px, 12vw, 58px); }
   .cita{ max-width:none; }
   .deco__anillo{ display:none; }
 }
 @media (max-width: 560px){
-  .grid-seg, .equipo{ grid-template-columns:1fr; }
+  .sectores{ grid-template-columns:1fr; }
 }
 
 /* Impresión / exportar a PDF: una sección por página */
@@ -607,12 +664,20 @@ main{ margin-left:var(--rail-w); }
   <symbol id="i-alerta" viewBox="0 0 24 24"><path d="M12 3.6l9.4 16.4H2.6z"/><path d="M12 9.6v4.2"/><path d="M12 17.1h.01"/></symbol>
   <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M3.5 12h17"/><path d="M14 5.5l6.5 6.5-6.5 6.5"/></symbol>
   <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 6.8V12l3.4 2"/></symbol>
+  <!-- Isotipo Clario: tres barras redondeadas (los antecedentes de una decisión)
+       la del centro abierta en dos, con el tramo inferior en azul: la decisión explicada. -->
+  <symbol id="logo-clario" viewBox="0 0 96 76">
+    <rect x="4"  y="24" width="20" height="52" rx="10" fill="currentColor"/>
+    <rect x="38" y="0"  width="20" height="36" rx="10" fill="currentColor"/>
+    <rect x="38" y="42" width="20" height="34" rx="10" fill="var(--accent)"/>
+    <rect x="72" y="38" width="20" height="38" rx="10" fill="currentColor"/>
+  </symbol>
   <symbol id="i-chispa" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></symbol>
 </svg>
 
 <!-- ===================== RIEL LATERAL ===================== -->
 <nav class="rail" aria-label="Secciones de la presentación">
-  <p class="rail__marca"><span class="rail__punto" aria-hidden="true"></span>Diplomado Experiencia &amp; Producto</p>
+  <p class="rail__marca"><span class="rail__punto" aria-hidden="true"></span>Diplomado en Estrategia y Experiencia de Productos en la Era de la IA</p>
 
   <ol class="rail__lista" id="railLista">
     <li><a class="rail__item" href="#portada"><span class="dash" aria-hidden="true"></span><span class="n">—</span><span class="t">Portada</span></a></li>
@@ -620,9 +685,11 @@ main{ margin-left:var(--rail-w); }
     <li><a class="rail__item" href="#segmento"><span class="dash" aria-hidden="true"></span><span class="n">02</span><span class="t">Segmento</span></a></li>
     <li><a class="rail__item" href="#hallazgo"><span class="dash" aria-hidden="true"></span><span class="n">03</span><span class="t">Hallazgo</span></a></li>
     <li><a class="rail__item" href="#propuesta"><span class="dash" aria-hidden="true"></span><span class="n">04</span><span class="t">Propuesta</span></a></li>
-    <li><a class="rail__item" href="#modelo-negocio"><span class="dash" aria-hidden="true"></span><span class="n">05</span><span class="t">Viabilidad</span></a></li>
-    <li><a class="rail__item" href="#viabilidad"><span class="dash" aria-hidden="true"></span><span class="n">06</span><span class="t">Sostenibilidad</span></a></li>
-    <li><a class="rail__item" href="#cierre"><span class="dash" aria-hidden="true"></span><span class="n">07</span><span class="t">Cierre</span></a></li>
+    <li><a class="rail__item" href="#alternativas"><span class="dash" aria-hidden="true"></span><span class="n">05</span><span class="t">Alternativas</span></a></li>
+    <li><a class="rail__item" href="#diferenciacion"><span class="dash" aria-hidden="true"></span><span class="n">06</span><span class="t">Diferenciación</span></a></li>
+    <li><a class="rail__item" href="#modelo-negocio"><span class="dash" aria-hidden="true"></span><span class="n">07a</span><span class="t">Viabilidad</span></a></li>
+    <li><a class="rail__item" href="#viabilidad"><span class="dash" aria-hidden="true"></span><span class="n">07b</span><span class="t">Sostenibilidad</span></a></li>
+    <li><a class="rail__item" href="#cierre"><span class="dash" aria-hidden="true"></span><span class="n">08</span><span class="t">Cierre</span></a></li>
   </ol>
 
   <div class="rail__pie">Ley 21.719 · Pitch final</div>
@@ -640,127 +707,101 @@ main{ margin-left:var(--rail-w); }
 
   <div class="wrap hero">
     <p class="hero__taller"><svg class="i"><use href="#i-chispa"/></svg>Taller Integrado · Ley 21.719</p>
-    <h1 class="hero__title">Nuestra propuesta</h1>
-    <p class="hero__sub">Título de trabajo. El nombre definitivo se define cuando cierre la validación del segmento.</p>
-    <div class="hero__marks"><span class="mark">reemplazar: nombre del proyecto</span></div>
 
-    <ul class="equipo">
-      <li><span class="idx">01</span><div class="nom">Nombre Apellido</div><div class="rol">Investigación y entrevistas</div></li>
-      <li><span class="idx">02</span><div class="nom">Nombre Apellido</div><div class="rol">Producto y prototipo</div></li>
-      <li><span class="idx">03</span><div class="nom">Nombre Apellido</div><div class="rol">Modelo de negocio</div></li>
-      <li><span class="idx">04</span><div class="nom">Nombre Apellido</div><div class="rol">Marco regulatorio</div></li>
-    </ul>
+    <div class="logo-lockup">
+      <svg class="logo" viewBox="0 0 96 76" role="img" aria-label="Clario"><use href="#logo-clario"/></svg>
+      <h1 class="hero__title">Clario</h1>
+    </div>
+    <p class="hero__sub">La pasarela que convierte cada decisión basada en tus datos en una explicación que puedes entender, cuestionar y seguir.</p>
 
-    <div class="hero__pie">
-      <span class="mark">reemplazar: nombres, roles y fecha</span>
-      <span>Fecha del pitch · día / mes / año</span>
+    <div class="hero__creditos">
+      <p class="hero__programa">Diplomado en Estrategia y Experiencia de Productos en la Era de la IA · FEN / UEjecutivos</p>
+      <p class="hero__equipo">
+        <span>Fabrizzio Basso</span><span class="sep" aria-hidden="true">·</span>
+        <span>Nicole Matus</span><span class="sep" aria-hidden="true">·</span>
+        <span>Valentina Palma</span><span class="sep" aria-hidden="true">·</span>
+        <span>Santiago Severin</span>
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ===================== 01 · HIPÓTESIS (clara) ===================== -->
+<!-- ===================== 01 · HIPÓTESIS (clara) =====================
+     GUIÓN (no se muestra en pantalla, ≤90 s):
+     Nos dieron un desafío compartido con otros 6 equipos: la Ley 21.719 obliga a las
+     empresas a cumplir, pero nadie está resolviendo esto para la persona que recibe la
+     decisión. Nosotros no creemos que haya que elegir un bando. La misma ley que obliga
+     a la empresa a responder en 30 días es la que le da a la persona el derecho a pedir
+     explicación y revisión humana — art. 8 bis y art. 11. Son la misma obligación vista
+     desde dos lados. Ahí está nuestra propuesta.
+-->
 <section class="sec" id="hipotesis" data-nombre="Hipótesis">
   <div class="wrap">
     <header class="sec__head">
       <div class="sec__num"><span class="n">01</span><span class="sep">·</span><span>Hipótesis</span></div>
       <h2 class="sec__title">La hipótesis que recibimos y por qué la dudamos</h2>
-      <p class="sec__intro">Punto de partida y el primer supuesto que decidimos poner a prueba.</p>
     </header>
 
     <div class="contraste">
       <article class="panel caja">
-        <div class="panel__top">
-          <span class="ico"><svg class="i"><use href="#i-doc"/></svg></span>
-          <h3 class="panel__tit">La hipótesis original</h3>
-          <span class="mark">contenido de ejemplo</span>
-        </div>
-        <p class="panel__frase">Aquí va la hipótesis que recibimos de la cátedra, en una sola frase.</p>
-        <ul class="lista-corta">
-          <li>Supuesto de partida sobre quién tiene el problema.</li>
-          <li>Supuesto de partida sobre cómo lo resuelve hoy.</li>
-        </ul>
+        <h3 class="panel__tit">Lo que nos dijeron</h3>
+        <p class="panel__frase">«La industria resuelve la Ley 21.719 como un problema de cumplimiento. Nadie lo resuelve desde el lado de las personas.»</p>
       </article>
 
       <div class="contraste__flecha" aria-hidden="true"><svg class="i"><use href="#i-flecha"/></svg></div>
 
-      <article class="panel panel--grieta caja">
-        <div class="panel__top">
-          <span class="ico"><svg class="i"><use href="#i-grieta"/></svg></span>
-          <h3 class="panel__tit">La grieta que le encontramos</h3>
-          <span class="mark">contenido de ejemplo</span>
-        </div>
-        <p class="panel__frase">Aquí va, en una frase corta, el punto donde la hipótesis no se sostuvo.</p>
-        <ul class="lista-corta">
-          <li>Qué observamos que la contradice.</li>
-          <li>Qué pregunta abrió eso.</li>
-        </ul>
+      <article class="panel caja">
+        <h3 class="panel__tit">La grieta que encontramos</h3>
+        <p class="panel__frase">Cumplir la ley y ayudarte a entenderla no son dos problemas. Son el mismo problema, resuelto en el mismo instante: cuando la empresa te comunica su decisión.</p>
       </article>
     </div>
-
-    <p class="nota-tiempo">
-      <svg class="i"><use href="#i-reloj"/></svg>
-      Bloque pensado para menos de 90 segundos en vivo: frases cortas, nada de párrafos.
-    </p>
   </div>
 </section>
 
-<!-- ===================== 02 · SEGMENTO (clara, tono alterno) ===================== -->
+<!-- ===================== 02 · SEGMENTO (clara, tono alterno) =====================
+     GUIÓN (no se muestra en pantalla):
+     No partimos sirviendo a 7 sectores a la vez — sería el Frankenstein que advirtió el
+     profesor. Elegimos crédito bancario porque es donde el dolor, el comprador y la presión
+     regulatoria se alinean los tres al mismo tiempo. Y para no quedarnos con un solo caso,
+     validamos que el mismo patrón — una decisión que te afecta sin que sepas por qué — se
+     repite en seguros de salud. Eso nos dice que no es un problema de un banco, es un
+     problema de cómo se comunican las decisiones basadas en datos.
+-->
 <section class="sec sec--alt" id="segmento" data-nombre="Segmento">
   <div class="wrap">
     <header class="sec__head">
       <div class="sec__num"><span class="n">02</span><span class="sep">·</span><span>Segmento</span></div>
       <h2 class="sec__title">A quién elegimos y por qué</h2>
-      <p class="sec__intro">
-        Perfiles que evaluamos y el criterio con el que descartamos el resto.
-        Cada tarjeta declara si la evidencia detrás es real o sintética.
-        <span class="mark">contenido de ejemplo</span>
-      </p>
+      <p class="sec__intro">Evaluamos 7 sectores donde una organización decide con datos:</p>
     </header>
 
-    <div class="grid-seg">
-      <article class="tarjeta caja">
-        <div class="tarjeta__top"><span class="tarjeta__n">A</span><span class="badge badge--real">real</span></div>
-        <h3 class="tarjeta__tit">Perfil evaluado</h3>
-        <p class="tarjeta__txt">Descripción breve del perfil y por qué lo miramos.</p>
-      </article>
-
-      <article class="tarjeta caja">
-        <div class="tarjeta__top"><span class="tarjeta__n">B</span><span class="badge badge--sint">sintético</span></div>
-        <h3 class="tarjeta__tit">Perfil evaluado</h3>
-        <p class="tarjeta__txt">Descripción breve del perfil y por qué lo descartamos.</p>
-      </article>
-
-      <article class="tarjeta caja">
-        <div class="tarjeta__top"><span class="tarjeta__n">C</span><span class="badge badge--real">real</span></div>
-        <h3 class="tarjeta__tit">Perfil evaluado</h3>
-        <p class="tarjeta__txt">Descripción breve del perfil y qué lo hacía atractivo.</p>
-      </article>
-
-      <article class="tarjeta caja">
-        <div class="tarjeta__top"><span class="tarjeta__n">D</span><span class="badge badge--sint">sintético</span></div>
-        <h3 class="tarjeta__tit">Perfil evaluado</h3>
-        <p class="tarjeta__txt">Descripción breve del perfil y el motivo de descarte.</p>
-      </article>
-
-      <article class="tarjeta tarjeta--elegida">
-        <span class="sello"><svg class="i"><use href="#i-target"/></svg>segmento elegido</span>
-        <h3 class="tarjeta__tit">Perfil elegido</h3>
-        <p class="tarjeta__txt">Aquí va, en dos líneas, por qué este segmento y no otro: dónde duele más y quién puede decidir.</p>
-        <div class="tarjeta__top">
-          <span class="badge badge--real">real</span>
-          <span class="mark">reemplazar</span>
-        </div>
-      </article>
+    <div class="sectores">
+        <div class="sector">Bancos y fintech</div>
+        <div class="sector">Aseguradoras</div>
+        <div class="sector">Telecomunicaciones</div>
+        <div class="sector">Inmobiliarias</div>
+        <div class="sector">Selección de personal</div>
+        <div class="sector">Plataformas digitales</div>
+        <div class="sector">Instituciones educacionales</div>
     </div>
 
-    <div class="leyenda">
-      <span class="badge badge--real">real</span><span>evidencia de campo propia</span>
-      <span class="badge badge--sint">sintético</span><span>perfil construido, sin entrevista detrás</span>
+    <div class="elegido">
+      <h3>Elegimos bancos y fintech — decisión de crédito</h3>
+      <p>Validamos que el mismo patrón se repite en seguros de salud</p>
     </div>
   </div>
 </section>
 
-<!-- ===================== 03 · HALLAZGO (oscura, mayor peso) ===================== -->
+<!-- ===================== 03 · HALLAZGO (oscura, mayor peso) =====================
+     GUIÓN (no se muestra en pantalla):
+     Esperábamos que el dolor fuera "no tener el crédito". No era ese. Era no tener una
+     respuesta que se pudiera entender ni cuestionar. Marcelo juntó toda su documentación,
+     volvió a la sucursal, y necesitó que su señora le ayudara a poner el reclamo — no lo
+     resolvió solo. Eso nos hizo cambiar la propuesta: no basta con dar acceso a los datos,
+     alguien tiene que activar el proceso por la persona, en el mismo lugar donde recibió la
+     mala noticia. Por eso Clario no es un portal aparte — vive dentro del mismo canal donde
+     la empresa ya te está hablando.
+-->
 <section class="sec sec--dark sec--peso" id="hallazgo" data-nombre="Hallazgo">
   <div class="deco" aria-hidden="true">
     <div class="deco__glow deco__glow--izq"></div>
@@ -771,71 +812,165 @@ main{ margin-left:var(--rail-w); }
     <header class="sec__head">
       <div class="sec__num"><span class="n">03</span><span class="sep">·</span><span>Hallazgo</span></div>
       <h2 class="sec__title">Qué encontramos que no esperábamos</h2>
-      <p class="sec__intro">El momento en que la conversación se salió del guion y nos obligó a mover la propuesta.</p>
     </header>
 
     <figure class="cita-bloque">
       <span class="comilla" aria-hidden="true">“</span>
       <div>
-        <blockquote class="cita">Aquí va la frase textual de la entrevista que nos hizo cambiar de dirección.</blockquote>
+        <blockquote class="cita">Le pregunté «¿pero qué antecedente?», y me dijeron que no me podían dar detalle ahí. Pasaron cuatro o cinco días y no me llegó nada por escrito. Cuando llegó, era un papel genérico.</blockquote>
         <figcaption class="cita__meta">
-          <span class="quien">Cargo o rol de quien lo dijo</span>
+          <span class="quien">Marcelo, 34 años</span>
           <span aria-hidden="true">·</span>
-          <span>Contexto breve de la conversación</span>
-          <span class="badge badge--real">real</span>
-          <span class="mark">reemplazar cita y atribución</span>
+          <span>rechazado dos veces por el mismo banco</span>
         </figcaption>
       </div>
     </figure>
 
-    <div class="cambio">
-      <p class="cambio__tit"><svg class="i"><use href="#i-flecha"/></svg>Qué cambió</p>
-      <p class="cambio__txt">
-        Aquí va el párrafo corto que explica qué dejamos de asumir a partir de ese hallazgo y qué
-        parte concreta de la propuesta se reescribió por eso.
-        <span class="mark">contenido de ejemplo</span>
-      </p>
-    </div>
+    <p class="cita-nota">Lo mismo nos dijo Valentina sobre su isapre: <em>«nunca me supieron explicar bien el criterio.»</em></p>
   </div>
 </section>
 
-<!-- ===================== 04 · PROPUESTA (clara) ===================== -->
+<!-- ===================== 04 · PROPUESTA (clara) =====================
+     GUIÓN (no se muestra en pantalla):
+     Esto es lo que construimos: un módulo, no una app aparte. La persona no tiene que
+     buscar un canal de privacidad ni entender qué derecho le corresponde — aparece la
+     opción ahí mismo, en el resultado. Y algo importante para la empresa: los datos nunca
+     se mueven de sus sistemas. Nosotros coordinamos quién responde, en qué plazo, y dejamos
+     la evidencia — no creamos una base paralela con la información de sus clientes.
+-->
 <section class="sec" id="propuesta" data-nombre="Propuesta">
   <div class="wrap">
     <header class="sec__head">
       <div class="sec__num"><span class="n">04</span><span class="sep">·</span><span>Propuesta</span></div>
       <h2 class="sec__title">La propuesta</h2>
-      <p class="sec__intro">Qué es, cómo se usa y qué se ve en pantalla. <span class="mark">contenido de ejemplo</span></p>
     </header>
 
     <div class="propuesta">
-      <ol class="pasos">
-        <li>
-          <span class="ico"><svg class="i"><use href="#i-layers"/></svg></span>
-          <div><span class="np">01</span><span class="t">Qué es</span><span class="d">Una frase que define la solución sin jerga.</span></div>
-        </li>
-        <li>
-          <span class="ico"><svg class="i"><use href="#i-click"/></svg></span>
-          <div><span class="np">02</span><span class="t">Cómo se usa</span><span class="d">El recorrido principal, en un par de pasos.</span></div>
-        </li>
-        <li>
-          <span class="ico"><svg class="i"><use href="#i-escudo"/></svg></span>
-          <div><span class="np">03</span><span class="t">Qué resuelve del problema</span><span class="d">El vínculo directo con el hallazgo de la sección anterior.</span></div>
-        </li>
-      </ol>
+      <div>
+        <p class="boton-ctx">Clario se activa donde la empresa ya te comunica su decisión:</p>
+        <p class="boton-demo">
+          <svg class="i" aria-hidden="true"><use href="#i-target"/></svg>
+          Conoce los datos considerados o solicita su revisión
+        </p>
+
+        <p class="boton-ctx" style="margin-top:calc(var(--sp)*1.3)">Desde ahí, en el mismo lugar:</p>
+        <ul class="acciones">
+          <li><svg class="i"><use href="#i-doc"/></svg><span>Ves qué categorías y fuentes de datos se usaron</span><span class="art">art. 5</span></li>
+          <li><svg class="i"><use href="#i-grieta"/></svg><span>Marcas un antecedente como incorrecto</span><span class="art">art. 6</span></li>
+          <li><svg class="i"><use href="#i-layers"/></svg><span>Pides acceso o rectificación</span><span class="art">arts. 5 y 6</span></li>
+          <li><svg class="i"><use href="#i-users"/></svg><span>Pides revisión humana</span><span class="art">art. 8 bis</span></li>
+          <li><svg class="i"><use href="#i-reloj"/></svg><span>Sigues el estado, hasta la respuesta</span><span class="art">30 días · art. 11</span></li>
+        </ul>
+      </div>
 
       <figure class="mockup">
         <svg class="i"><use href="#i-imagen"/></svg>
         <figcaption class="mockup__txt">
           mockup del prototipo aquí
-          <span class="mockup__pie">reemplazar por captura o imagen del prototipo</span>
+          <span class="mockup__pie">reemplazar con la captura real del prototipo</span>
         </figcaption>
       </figure>
     </div>
+
+    <p class="remate">
+      <svg class="i" aria-hidden="true"><use href="#i-chispa"/></svg>
+      <span>Tus datos nunca salen de los sistemas de la empresa. Clario coordina el proceso — no los reemplaza.</span>
+    </p>
   </div>
 </section>
 
-<!-- ===================== 05 · VIABILIDAD · POR QUÉ NOS COMPRAN (oscura) =====================
+<!-- ===================== 05 · ALTERNATIVAS (clara, tono alterno) ===================== -->
+<section class="sec sec--alt" id="alternativas" data-nombre="Alternativas">
+  <div class="wrap">
+    <header class="sec__head">
+      <div class="sec__num"><span class="n">05</span><span class="sep">·</span><span>Alternativas</span></div>
+      <h2 class="sec__title">Ya hay plataformas. Ninguna llega al momento que importa.</h2>
+      <p class="sec__intro">A agosto de 2026 el mercado chileno ya vende cumplimiento. Todas arrancan en un formulario de privacidad; nosotros arrancamos en el rechazo.</p>
+    </header>
+
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Solución</th>
+            <th scope="col">Qué publica</th>
+            <th scope="col">Dónde se queda corta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">LeyDeDatos</th><td>API, SDK, automatización de solicitudes y trazabilidad</td><td>Sin flujo para explicar una decisión concreta y pedir revisión</td></tr>
+          <tr><th scope="row">PDP Suite</th><td>Orquesta derechos, consentimientos y evidencia entre áreas</td><td>Foco en la operación interna, no en la experiencia de la persona</td></tr>
+          <tr><th scope="row">Confirmer360</th><td>Portal del titular autenticado con RUT, plazos y trazabilidad</td><td>Portal general de derechos, no módulo dentro de la decisión</td></tr>
+          <tr><th scope="row">SIDAP · Surtika</th><td>Cumplimiento completo con cronómetros y alertas</td><td>No conecta explicación, punto de vista y revisión con un caso</td></tr>
+          <tr><th scope="row">OneTrust Chile</th><td>Plataforma internacional madura, con implementación local</td><td>Compite de frente si nos reducimos a gestionar solicitudes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bloque-chips">
+      <span class="lbl">Benchmark internacional</span>
+      <div class="chips">
+        <span class="chip">OneTrust</span>
+        <span class="chip">TrustArc</span>
+        <span class="chip">DataGrail</span>
+        <span class="chip">ServiceNow</span>
+        <span class="chip">Fiddler</span>
+        <span class="chip">Credo AI</span>
+      </div>
+    </div>
+
+    <p class="nota-fuente">
+      <svg class="i" aria-hidden="true"><use href="#i-alerta"/></svg>
+      <span class="k">La evidencia es lo que publican los propios proveedores: no permite confirmar su madurez ni su adopción real. También existen Soyio y otros sustitutos —planillas, CRM, tickets o desarrollo interno— que bastan cuando el volumen es bajo.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ===================== 06 · DIFERENCIACIÓN (clara) ===================== -->
+<section class="sec" id="diferenciacion" data-nombre="Diferenciación">
+  <div class="wrap">
+    <header class="sec__head">
+      <div class="sec__num"><span class="n">06</span><span class="sep">·</span><span>Diferenciación</span></div>
+      <h2 class="sec__title">Empezamos donde las otras terminan: en la decisión</h2>
+      <p class="sec__intro">Las demás esperan a que la persona encuentre el canal de privacidad. Clario aparece en la pantalla del rechazo, cuando todavía está mirando.</p>
+    </header>
+
+    <ol class="dif">
+      <li>
+        <span class="np">01</span>
+        <h3>En el momento</h3>
+        <p>Se activa cuando se comunica la decisión, no en un portal aparte que hay que ir a buscar.</p>
+      </li>
+      <li>
+        <span class="np">02</span>
+        <h3>En su entorno</h3>
+        <p>Vive en el sitio o app de la organización, con su identidad y su sesión ya iniciada.</p>
+      </li>
+      <li>
+        <span class="np">03</span>
+        <h3>Conectado al caso</h3>
+        <p>Vincula la solicitud con los datos, fuentes y sistemas que sustentaron ese resultado.</p>
+      </li>
+      <li>
+        <span class="np">04</span>
+        <h3>Explicación y revisión</h3>
+        <p>Une en un solo hilo la explicación, el derecho aplicable y la intervención humana.</p>
+      </li>
+      <li>
+        <span class="np">05</span>
+        <h3>Núcleo y sectores</h3>
+        <p>Una base común de derechos, con módulos para decisiones financieras, de seguros o laborales.</p>
+      </li>
+    </ol>
+
+    <p class="remate remate--riesgo">
+      <svg class="i" aria-hidden="true"><use href="#i-alerta"/></svg>
+      <span>Son <b>hipótesis, no ventajas probadas</b>: hay que validarlas frente a las plataformas existentes, la capacidad real de integración y la confianza de la persona en la misma institución que decidió.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ===================== 07 · VIABILIDAD · POR QUÉ NOS COMPRAN (oscura) =====================
      GUIÓN (no se muestra en pantalla):
      Acá el negocio no se gana con nuestro margen, se gana demostrando el ahorro del cliente.
      Reconstruimos desde cero cuánto le cuesta a un banco responder una solicitud de datos hoy:
@@ -852,7 +987,7 @@ main{ margin-left:var(--rail-w); }
 
   <div class="wrap">
     <div class="sec__num">
-      <span class="n">05</span><span class="sep">·</span><span>Viabilidad</span>
+      <span class="n">07a</span><span class="sep">·</span><span>Viabilidad</span>
       <span class="sep">·</span><span>Por qué nos compran</span>
     </div>
 
@@ -887,7 +1022,7 @@ main{ margin-left:var(--rail-w); }
   </div>
 </section>
 
-<!-- ===================== 06 · VIABILIDAD · POR QUÉ SE SOSTIENE (oscura) =====================
+<!-- ===================== 08 · VIABILIDAD · POR QUÉ SE SOSTIENE (oscura) =====================
      GUIÓN (no se muestra en pantalla):
      El equilibrio se alcanza con cinco clientes, en un mercado de ciento cincuenta empresas
      grandes obligadas. Eso es alcanzable.
@@ -907,7 +1042,7 @@ main{ margin-left:var(--rail-w); }
 
   <div class="wrap">
     <div class="sec__num">
-      <span class="n">06</span><span class="sep">·</span><span>Viabilidad</span>
+      <span class="n">07b</span><span class="sep">·</span><span>Viabilidad</span>
       <span class="sep">·</span><span>Sostenibilidad del modelo</span>
     </div>
 
@@ -940,45 +1075,52 @@ main{ margin-left:var(--rail-w); }
   </div>
 </section>
 
-<!-- ===================== 07 · CIERRE (clara) ===================== -->
+<!-- ===================== 08 · CIERRE (clara, tono alterno) =====================
+     GUIÓN (no se muestra en pantalla):
+     Sabemos que el dolor es real y se repite entre sectores, y que el negocio tiene un punto
+     de equilibrio alcanzable. Lo que no sabemos honestamente: cuánto volumen real vamos a ver
+     — no hay historial en Chile — y cómo va a reglamentar la Agencia la autenticación y la
+     revisión humana, que hoy depende de instrucciones que todavía no existen. Y hay un riesgo
+     de confianza que hay que validar: que sea la misma empresa que te rechazó la que gestione
+     tu revisión puede generar desconfianza en vez de tranquilidad. El siguiente paso no es
+     escalar, es cerrar un piloto real con un banco y medir esto con datos, no con supuestos.
+-->
 <section class="sec sec--alt" id="cierre" data-nombre="Cierre">
   <div class="wrap">
     <header class="sec__head">
-      <div class="sec__num"><span class="n">07</span><span class="sep">·</span><span>Cierre</span></div>
+      <div class="sec__num"><span class="n">08</span><span class="sep">·</span><span>Cierre</span></div>
       <h2 class="sec__title">Qué sabemos, qué no, y qué haríamos ahora</h2>
-      <p class="sec__intro">Separamos lo que está respaldado por evidencia de lo que todavía es apuesta.</p>
     </header>
 
     <div class="columnas">
       <section class="col">
         <h3 class="col__tit">
           <span class="ico ico--olive"><svg class="i"><use href="#i-check"/></svg></span>
-          Lo que sabemos <span class="mark">contenido de ejemplo</span>
+          Lo que sabemos
         </h3>
         <ul class="check check--si">
-          <li><svg class="i"><use href="#i-check"/></svg><div>Afirmación respaldada por evidencia propia.<span class="sub">Con qué la sostenemos.</span></div></li>
-          <li><svg class="i"><use href="#i-check"/></svg><div>Segunda afirmación validada en campo.<span class="sub">Con qué la sostenemos.</span></div></li>
-          <li><svg class="i"><use href="#i-check"/></svg><div>Tercera afirmación validada en campo.<span class="sub">Con qué la sostenemos.</span></div></li>
+          <li><svg class="i"><use href="#i-check"/></svg><div>El dolor se repite en bancos y seguros — no es de un sector</div></li>
+          <li><svg class="i"><use href="#i-check"/></svg><div>El punto de equilibrio (5 clientes) es alcanzable</div></li>
+          <li><svg class="i"><use href="#i-check"/></svg><div>La arquitectura es viable sin centralizar datos personales</div></li>
         </ul>
       </section>
 
       <section class="col col--riesgo">
         <h3 class="col__tit">
           <span class="ico" style="background:var(--risk-bg); color:var(--risk)"><svg class="i"><use href="#i-alerta"/></svg></span>
-          Lo que no sabemos todavía <span class="k">/ restricciones regulatorias abiertas</span>
-          <span class="mark">contenido de ejemplo</span>
+          Lo que no sabemos todavía
         </h3>
         <ul class="check check--no">
-          <li><svg class="i"><use href="#i-alerta"/></svg><div>Supuesto que todavía no probamos.<span class="sub">Qué resultado lo mataría.</span></div></li>
-          <li><svg class="i"><use href="#i-alerta"/></svg><div>Restricción regulatoria abierta.<span class="sub">Qué punto de la Ley 21.719 hay que resolver antes de avanzar.</span></div></li>
-          <li><svg class="i"><use href="#i-alerta"/></svg><div>Riesgo del modelo de negocio sin validar.<span class="sub">Qué evidencia nos haría abandonarlo.</span></div></li>
+          <li><svg class="i"><use href="#i-alerta"/></svg><div>Si el volumen de solicitudes real en Chile confirma el 15,6 a 1</div></li>
+          <li><svg class="i"><use href="#i-alerta"/></svg><div>Cómo definirá la Agencia la autenticación y la revisión humana<span class="sub">Reglamento pendiente, no ley firme.</span></div></li>
+          <li><svg class="i"><use href="#i-alerta"/></svg><div>Si la persona confía en que la misma empresa que la rechazó gestione su revisión</div></li>
         </ul>
       </section>
     </div>
 
     <p class="pasos-sig">
-      <span class="lbl"><svg class="i"><use href="#i-flecha"/></svg>Próximos pasos</span>
-      <span>Aquí va lo que haríamos en las próximas semanas y qué tendría que pasar para seguir o parar. <span class="mark">reemplazar</span></span>
+      <span class="lbl"><svg class="i"><use href="#i-flecha"/></svg>Próximo paso</span>
+      <span>Cerrar la primera integración piloto — MVP 0, un banco, un tipo de decisión — y medir si el ahorro y la confianza se sostienen con datos reales.</span>
     </p>
   </div>
 </section>

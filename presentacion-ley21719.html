@@ -364,6 +364,12 @@ main{ margin-left:var(--rail-w); }
   border:1px solid var(--line); border-radius:var(--r-sm); background:var(--bg-alt);
   color:var(--ink-2); font-size:var(--f-sm); line-height:1.25;
 }
+.elegido-linea{
+  margin-top:calc(var(--sp)*1.1); padding-left:calc(var(--sp)*1.1);
+  border-left:3px solid var(--accent); font-size:calc(var(--f-body)*1.05); line-height:1.4;
+}
+.elegido-linea b{ font-weight:650; }
+.problema__txt{ margin-top:calc(var(--sp)*1.2); color:var(--ink-2); max-width:92ch; }
 .personas{
   margin-top:calc(var(--sp)*1.4);
   display:grid; grid-template-columns:1fr 1fr; gap:calc(var(--sp)*.9);
@@ -777,15 +783,14 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 
   <ol class="rail__lista" id="railLista">
     <li><a class="rail__item" href="#portada"><span class="dash" aria-hidden="true"></span><span class="n">—</span><span class="t">Portada</span></a></li>
-    <li><a class="rail__item" href="#hipotesis"><span class="dash" aria-hidden="true"></span><span class="n">01</span><span class="t">Hipótesis</span></a></li>
-    <li><a class="rail__item" href="#segmento"><span class="dash" aria-hidden="true"></span><span class="n">02</span><span class="t">Segmento</span></a></li>
-    <li><a class="rail__item" href="#hallazgo"><span class="dash" aria-hidden="true"></span><span class="n">03</span><span class="t">Hallazgo</span></a></li>
-    <li><a class="rail__item" href="#propuesta"><span class="dash" aria-hidden="true"></span><span class="n">04a</span><span class="t">Propuesta</span></a></li>
-    <li><a class="rail__item" href="#factibilidad"><span class="dash" aria-hidden="true"></span><span class="n">04b</span><span class="t">Factibilidad</span></a></li>
-    <li><a class="rail__item" href="#diferenciacion"><span class="dash" aria-hidden="true"></span><span class="n">05</span><span class="t">Diferenciación</span></a></li>
-    <li><a class="rail__item" href="#modelo-negocio"><span class="dash" aria-hidden="true"></span><span class="n">06a</span><span class="t">Viabilidad</span></a></li>
-    <li><a class="rail__item" href="#viabilidad"><span class="dash" aria-hidden="true"></span><span class="n">06b</span><span class="t">Sostenibilidad</span></a></li>
-    <li><a class="rail__item" href="#cierre"><span class="dash" aria-hidden="true"></span><span class="n">07</span><span class="t">Cierre</span></a></li>
+    <li><a class="rail__item" href="#problema"><span class="dash" aria-hidden="true"></span><span class="n">01</span><span class="t">Problema</span></a></li>
+    <li><a class="rail__item" href="#hallazgo"><span class="dash" aria-hidden="true"></span><span class="n">02</span><span class="t">Hallazgo</span></a></li>
+    <li><a class="rail__item" href="#propuesta"><span class="dash" aria-hidden="true"></span><span class="n">03a</span><span class="t">Propuesta</span></a></li>
+    <li><a class="rail__item" href="#factibilidad"><span class="dash" aria-hidden="true"></span><span class="n">03b</span><span class="t">Factibilidad</span></a></li>
+    <li><a class="rail__item" href="#diferenciacion"><span class="dash" aria-hidden="true"></span><span class="n">04</span><span class="t">Diferenciación</span></a></li>
+    <li><a class="rail__item" href="#modelo-negocio"><span class="dash" aria-hidden="true"></span><span class="n">05a</span><span class="t">Viabilidad</span></a></li>
+    <li><a class="rail__item" href="#viabilidad"><span class="dash" aria-hidden="true"></span><span class="n">05b</span><span class="t">Sostenibilidad</span></a></li>
+    <li><a class="rail__item" href="#cierre"><span class="dash" aria-hidden="true"></span><span class="n">06</span><span class="t">Cierre</span></a></li>
   </ol>
 
   <div class="rail__pie">Ley 21.719 · Pitch final</div>
@@ -822,89 +827,77 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   </div>
 </section>
 
-<!-- ===================== 01 · HIPÓTESIS (clara) =====================
-     GUIÓN (no se muestra en pantalla, ≤90 s):
-     Nos dieron un desafío compartido con otros 6 equipos: la Ley 21.719 obliga a las
-     empresas a cumplir, pero nadie está resolviendo esto para la persona que recibe la
-     decisión. Nosotros no creemos que haya que elegir un bando. La misma ley que obliga
-     a la empresa a responder en 30 días es la que le da a la persona el derecho a pedir
-     explicación y revisión humana — art. 8 bis y art. 11. Son la misma obligación vista
-     desde dos lados. Ahí está nuestra propuesta.
+<!-- ===================== ARCHIVO: HIPÓTESIS FORMAL =====================
+     Esta sección se fusionó con Segmento en la nueva 01 · Problema.
+     Se conserva aquí el enunciado con sus criterios, por si el equipo
+     quiere devolverlo al deck o usarlo en la ronda de preguntas.
+
+     Creemos que quien recibe una decisión basada en sus datos usará una
+     solución integrada en el mismo canal para comprender qué información
+     se consideró, ejercer el derecho aplicable y seguir su solicitud,
+     porque la barrera no es la falta de derechos sino el costo de
+     ejercerlos: conocimientos legales y recorridos entre canales.
+
+     SE VALIDA SI: en el piloto, quienes reciben un rechazo abren la
+     solicitud desde el módulo y la completan sin asistencia de terceros
+     ni pasar por otro canal.
+
+     SE CAE SI: siguen recurriendo al call center o abandonan el flujo a
+     medio camino: sería señal de que el costo de ejercer el derecho no
+     era la barrera.
 -->
-<section class="sec" id="hipotesis" data-nombre="Hipótesis">
-  <div class="wrap">
-    <header class="sec__head">
-      <div class="sec__num"><span class="n">01</span><span class="sep">·</span><span>Hipótesis</span></div>
-      <h2 class="sec__title">Reconocer derechos no garantiza poder ejercerlos</h2>
-    </header>
 
-    <div class="hipotesis">
-      <div>
-        <p class="hipotesis__frase">Creemos que <b>quien recibe una decisión basada en sus datos usará una solución integrada en el mismo canal</b> para comprender qué información se consideró, ejercer el derecho aplicable y seguir su solicitud, <b>porque la barrera no es la falta de derechos sino el costo de ejercerlos</b>: conocimientos legales y recorridos entre canales.</p>
-
-        <ul class="prueba">
-          <li class="prueba--si">
-            <span class="lbl">Se valida si</span>
-            <p>En el piloto, quienes reciben un rechazo abren la solicitud desde el módulo y la completan sin asistencia de terceros ni pasar por otro canal.</p>
-          </li>
-          <li class="prueba--no">
-            <span class="lbl">Se cae si</span>
-            <p>Siguen recurriendo al call center o abandonan el flujo a medio camino: sería señal de que el costo de ejercer el derecho no era la barrera.</p>
-          </li>
-        </ul>
-      </div>
-
-      <div class="hipotesis__nota">
-        <p><b>No le cobramos a la persona:</b> la necesidad es ocasional, no controla los datos ni los sistemas que la resuelven, y el pago sería una nueva barrera para ejercer sus derechos.</p>
-        <p><b>Paga la organización:</b> debe responder estas solicitudes, controla los medios para gestionarlas y enfrenta esta necesidad de forma recurrente.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 02 · SEGMENTO (clara, tono alterno) =====================
+<!-- ===================== 01 · PROBLEMA (clara) =====================
      GUIÓN (no se muestra en pantalla):
-     No partimos sirviendo a 7 sectores a la vez — sería el Frankenstein que advirtió el
-     profesor. Elegimos crédito bancario porque es donde el dolor, el comprador y la presión
-     regulatoria se alinean los tres al mismo tiempo. Y para no quedarnos con un solo caso,
-     validamos que el mismo patrón — una decisión que te afecta sin que sepas por qué — se
-     repite en seguros de salud. Eso nos dice que no es un problema de un banco, es un
-     problema de cómo se comunican las decisiones basadas en datos.
+     La ley reconoce los derechos, pero reconocerlos no es lo mismo que
+     poder ejercerlos. Miramos ocho tipos de organizaciones que deciden
+     con datos personales y en todas se repite el mismo recorrido: la
+     persona tiene que averiguar qué información se usó, deducir qué
+     derecho le corresponde, encontrar el canal y después perseguir su
+     solicitud. Elegimos partir por bancos y fintech, en la decisión de
+     crédito, porque ahí el dolor, el comprador y la presión regulatoria
+     se alinean al mismo tiempo. Y ojo con quién es quién: la persona es
+     la usuaria, la organización es la que paga.
 -->
-<section class="sec sec--alt" id="segmento" data-nombre="Segmento">
+<section class="sec" id="problema" data-nombre="Problema">
   <div class="wrap">
     <header class="sec__head">
-      <div class="sec__num"><span class="n">02</span><span class="sep">·</span><span>Segmento</span></div>
-      <h2 class="sec__title">A quién elegimos y por qué</h2>
-      <p class="sec__intro">Evaluamos 7 sectores donde una organización decide con datos:</p>
+      <div class="sec__num"><span class="n">01</span><span class="sep">·</span><span>Problema</span></div>
+      <h2 class="sec__title">Tener derechos no basta si ejercerlos sigue siendo difícil</h2>
+      <p class="sec__intro">Consideramos personas afectadas por decisiones basadas en sus datos en ocho tipos de organizaciones:</p>
     </header>
 
-    <div class="sectores">
-        <div class="sector">Bancos y fintech</div>
-        <div class="sector">Aseguradoras</div>
-        <div class="sector">Telecomunicaciones</div>
-        <div class="sector">Inmobiliarias</div>
-        <div class="sector">Selección de personal</div>
-        <div class="sector">Plataformas digitales</div>
-        <div class="sector">Instituciones educacionales</div>
-    </div>
+    <p class="chips">
+      <span class="chip">Bancos</span>
+      <span class="chip">Isapres</span>
+      <span class="chip">Compañías de seguros</span>
+      <span class="chip">AFP</span>
+      <span class="chip">Cajas de compensación</span>
+      <span class="chip">Retail</span>
+      <span class="chip">Telecomunicaciones</span>
+      <span class="chip">Prestadores privados de salud</span>
+    </p>
 
-    <div class="elegido">
-      <h3>Elegimos bancos y fintech — decisión de crédito</h3>
-      <p>Validamos que el mismo patrón se repite en seguros de salud</p>
-    </div>
+    <p class="elegido-linea"><b>Partimos por bancos y fintech, en la decisión de crédito.</b> El mismo patrón se repite en seguros de salud.</p>
+
+    <p class="problema__txt">Estas decisiones pueden afectar el acceso o las condiciones de productos financieros, seguros, prestaciones de salud y otros servicios relevantes. Para comprenderlas o cuestionarlas, la persona debe identificar qué información se utilizó, determinar qué derecho corresponde, encontrar el canal adecuado y seguir su solicitud.</p>
 
     <div class="personas">
       <article class="persona persona--user">
-        <p class="persona__lbl"><svg class="i"><use href="#i-users"/></svg>User persona</p>
-        <p>La persona afectada es la <b>usuaria directa</b>. Obtiene una forma comprensible, gratuita y vinculada con la decisión concreta para ejercer los derechos que le reconoce la ley.</p>
+        <p class="persona__lbl"><svg class="i"><use href="#i-users"/></svg>La persona es la usuaria directa</p>
+        <p>Necesita una vía comprensible, gratuita y vinculada con la decisión que la afectó.</p>
       </article>
 
       <article class="persona persona--buyer">
-        <p class="persona__lbl"><svg class="i"><use href="#i-escudo"/></svg>Buyer persona</p>
-        <p>La organización que toma la decisión es el <b>cliente</b>. Obtiene una infraestructura para gestionar solicitudes de manera consistente, coordinar sistemas y responsables, y demostrar cómo y cuándo respondió.</p>
+        <p class="persona__lbl"><svg class="i"><use href="#i-escudo"/></svg>La organización es el cliente</p>
+        <p>Debe responder las solicitudes, controla los datos y sistemas necesarios, y enfrenta esta necesidad de manera recurrente. Por eso financia la solución.</p>
       </article>
     </div>
+
+    <p class="remate">
+      <svg class="i" aria-hidden="true"><use href="#i-chispa"/></svg>
+      <span>El problema está en la distancia entre el reconocimiento legal de los derechos y la capacidad real de ejercerlos.</span>
+    </p>
   </div>
 </section>
 
@@ -926,7 +919,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 
   <div class="wrap">
     <header class="sec__head">
-      <div class="sec__num"><span class="n">03</span><span class="sep">·</span><span>Hallazgo</span></div>
+      <div class="sec__num"><span class="n">02</span><span class="sep">·</span><span>Hallazgo</span></div>
       <h2 class="sec__title">Qué encontramos que no esperábamos</h2>
     </header>
 
@@ -985,7 +978,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 <section class="sec" id="propuesta" data-nombre="Propuesta">
   <div class="wrap">
     <header class="sec__head">
-      <div class="sec__num"><span class="n">04a</span><span class="sep">·</span><span>Propuesta</span></div>
+      <div class="sec__num"><span class="n">03a</span><span class="sep">·</span><span>Propuesta</span></div>
       <h2 class="sec__title">La propuesta</h2>
       <p class="sec__intro">Clario es una capa modular que la organización integra en su propio canal —web o app— y que se activa en el momento en que comunica una decisión. Conecta el resultado con los antecedentes que lo sustentaron, el derecho que corresponde y quien puede revisarlo. No es un portal de privacidad aparte ni una base de datos nueva.</p>
     </header>
@@ -1052,7 +1045,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 <section class="sec sec--alt" id="factibilidad" data-nombre="Factibilidad">
   <div class="wrap">
     <header class="sec__head">
-      <div class="sec__num"><span class="n">04b</span><span class="sep">·</span><span>Factibilidad</span></div>
+      <div class="sec__num"><span class="n">03b</span><span class="sep">·</span><span>Factibilidad</span></div>
       <h2 class="sec__title">Se conecta con lo que la organización ya tiene</h2>
       <p class="sec__intro">Una arquitectura API-first con componentes de experiencia listos para integrar y adaptar a los canales de cada organización.</p>
     </header>
@@ -1097,7 +1090,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 <section class="sec" id="diferenciacion" data-nombre="Diferenciación">
   <div class="wrap">
     <header class="sec__head">
-      <div class="sec__num"><span class="n">05</span><span class="sep">·</span><span>Referentes y diferenciación</span></div>
+      <div class="sec__num"><span class="n">04</span><span class="sep">·</span><span>Referentes y diferenciación</span></div>
       <h2 class="sec__title">Empezamos donde las otras terminan: en la decisión</h2>
       <p class="sec__intro">Las demás esperan a que la persona encuentre el canal de privacidad. Clario aparece en la pantalla del rechazo, cuando todavía está mirando.</p>
     </header>
@@ -1166,7 +1159,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 
   <div class="wrap">
     <div class="sec__num">
-      <span class="n">06a</span><span class="sep">·</span><span>Viabilidad</span>
+      <span class="n">05a</span><span class="sep">·</span><span>Viabilidad</span>
       <span class="sep">·</span><span>Por qué nos compran</span>
     </div>
 
@@ -1221,7 +1214,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 
   <div class="wrap">
     <div class="sec__num">
-      <span class="n">06b</span><span class="sep">·</span><span>Viabilidad</span>
+      <span class="n">05b</span><span class="sep">·</span><span>Viabilidad</span>
       <span class="sep">·</span><span>Sostenibilidad del modelo</span>
     </div>
 
@@ -1267,7 +1260,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 <section class="sec sec--alt" id="cierre" data-nombre="Cierre">
   <div class="wrap">
     <header class="sec__head">
-      <div class="sec__num"><span class="n">07</span><span class="sep">·</span><span>Cierre</span></div>
+      <div class="sec__num"><span class="n">06</span><span class="sep">·</span><span>Cierre</span></div>
       <h2 class="sec__title">Qué sabemos, qué no, y qué haríamos ahora</h2>
     </header>
 

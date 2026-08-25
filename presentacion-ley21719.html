@@ -35,6 +35,7 @@
   --risk:      #A13D3D;  /* rojo apagado: pendientes y placeholders */
   --line:      #E3DACD;  /* líneas y separadores */
   --accent-bg: rgba(27,95,217,.08);
+  --chip-bd:   rgba(27,95,217,.26);
   --olive-bg:  rgba(91,107,79,.13);
   --risk-bg:   rgba(161,61,61,.06);
   --neutral-bg:rgba(107,101,92,.10);
@@ -85,6 +86,7 @@ body[data-tema="oscuro"] .rail{
   --risk:      #E88A8A;
   --line:      #252A32;
   --accent-bg: rgba(59,135,255,.14);
+  --chip-bd:   rgba(59,135,255,.34);
   --olive-bg:  rgba(143,191,158,.15);
   --risk-bg:   rgba(232,138,138,.12);
   --neutral-bg:rgba(255,255,255,.07);
@@ -329,46 +331,10 @@ main{ margin-left:var(--rail-w); }
   gap:calc(var(--sp)*1.4); flex-wrap:wrap; color:var(--ink-2); font-size:var(--f-sm);
 }
 
-/* ============================================================
-   01 · HIPÓTESIS — el enunciado manda, la justificación acompaña
-   ============================================================ */
-.hipotesis{
-  display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
-  gap:calc(var(--sp)*2.4); align-items:start;
-}
-.hipotesis__frase{
-  padding-left:calc(var(--sp)*1.3); border-left:3px solid var(--accent);
-  font-size:clamp(16px,2.95vh,26px); line-height:1.33; letter-spacing:-.015em;
-}
-.hipotesis__nota{ display:grid; gap:calc(var(--sp)*.9); color:var(--ink-2); line-height:1.55; }
-.prueba{ margin-top:calc(var(--sp)*1.4); display:grid; gap:calc(var(--sp)*.9); }
-.prueba li{ padding-left:calc(var(--sp)*1.1); border-left:2px solid var(--line); }
-.prueba .lbl{
-  display:block; font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
-  font-weight:700; margin-bottom:.25em;
-}
-.prueba--si{ border-left-color:var(--olive) !important; }
-.prueba--si .lbl{ color:var(--olive); }
-.prueba--no{ border-left-color:var(--risk) !important; }
-.prueba--no .lbl{ color:var(--risk); }
-.prueba p{ color:var(--ink-2); font-size:var(--f-sm); line-height:1.5; }
-.hipotesis__nota b{ color:var(--ink); font-weight:650; }
 
 /* ============================================================
-   02 · SEGMENTO — siete sectores evaluados + el elegido
+   01 · PROBLEMA — sectores, personas y remate
    ============================================================ */
-.sectores{ display:grid; grid-template-columns:repeat(7,1fr); gap:calc(var(--sp)*.7); }
-.sector{
-  display:flex; align-items:center; justify-content:center; text-align:center;
-  padding:calc(var(--sp)*1.1) calc(var(--sp)*.55);
-  border:1px solid var(--line); border-radius:var(--r-sm); background:var(--bg-alt);
-  color:var(--ink-2); font-size:var(--f-sm); line-height:1.25;
-}
-.elegido-linea{
-  margin-top:calc(var(--sp)*1.1); padding-left:calc(var(--sp)*1.1);
-  border-left:3px solid var(--accent); font-size:calc(var(--f-body)*1.05); line-height:1.4;
-}
-.elegido-linea b{ font-weight:650; }
 .problema__txt{ margin-top:calc(var(--sp)*1.2); color:var(--ink-2); max-width:92ch; }
 .personas{
   margin-top:calc(var(--sp)*1.4);
@@ -387,17 +353,6 @@ main{ margin-left:var(--rail-w); }
 .persona--buyer .persona__lbl{ color:var(--accent); }
 .persona p{ font-size:var(--f-sm); line-height:1.5; }
 .persona b{ font-weight:650; }
-.elegido{
-  margin-top:calc(var(--sp)*1.1);
-  padding:calc(var(--sp)*1.5) calc(var(--sp)*1.7);
-  border:1px solid var(--accent); border-radius:var(--r); background:var(--accent-bg);
-  display:flex; flex-direction:column; gap:.55em;
-}
-.elegido h3{
-  font-family:var(--display); font-size:calc(var(--f-h2)*.82);
-  font-weight:650; letter-spacing:-.018em; line-height:1.1;
-}
-.elegido p{ color:var(--ink-2); }
 
 /* ============================================================
    03 · HALLAZGO — sección de mayor peso visual
@@ -564,13 +519,11 @@ main{ margin-left:var(--rail-w); }
   font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
   color:var(--ink-2); font-weight:700; white-space:nowrap;
 }
-.banda__nota{ color:var(--ink-2); font-size:var(--f-xs); line-height:1.5; }
-.banda__nota b{ color:var(--ink); font-weight:650; }
 .chips{ display:flex; flex-wrap:wrap; gap:.45em; align-items:center; }
 .chip{
-  font-size:var(--f-xs); letter-spacing:.06em; color:var(--ink-2);
-  border:1px solid var(--line); border-radius:999px; padding:.28em .7em;
-  background:var(--bg-alt);
+  font-size:var(--f-xs); letter-spacing:.06em; font-weight:600;
+  color:var(--accent); background:var(--accent-bg);
+  border:1px solid var(--chip-bd); border-radius:999px; padding:.3em .75em;
 }
 .bloque-chips{
   margin-top:calc(var(--sp)*1.3); display:flex; gap:calc(var(--sp)*1.1);
@@ -723,8 +676,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   .rail__item{ grid-template-columns:auto auto; gap:.45em; padding:.5em .55em; white-space:nowrap; }
   .rail__item .dash{ display:none; }
   .progreso{ left:0; top:calc(var(--nav-h) - 2px); width:var(--p,0%); height:2px; transition:width .12s linear; }
-      .sectores{ grid-template-columns:repeat(2,1fr); }
-  .cita-bloque{ grid-template-columns:1fr; }
+        .cita-bloque{ grid-template-columns:1fr; }
   .comilla{ display:none; }
   .cambio, .propuesta, .columnas, .cajas-3, .dif, .personas, .hallazgo, .tecnica{ grid-template-columns:1fr; }
   /* La cifra protagonista se escala por ancho: en vertical no cabe a la altura del viewport */
@@ -733,8 +685,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   .deco__anillo{ display:none; }
 }
 @media (max-width: 560px){
-  .sectores{ grid-template-columns:1fr; }
-}
+  }
 
 /* Impresión / exportar a PDF: una sección por página */
 @media print{
@@ -878,8 +829,6 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
       <span class="chip">Prestadores privados de salud</span>
     </p>
 
-    <p class="elegido-linea"><b>Partimos por bancos y fintech, en la decisión de crédito.</b> El mismo patrón se repite en seguros de salud.</p>
-
     <p class="problema__txt">Estas decisiones pueden afectar el acceso o las condiciones de productos financieros, seguros, prestaciones de salud y otros servicios relevantes. Para comprenderlas o cuestionarlas, la persona debe identificar qué información se utilizó, determinar qué derecho corresponde, encontrar el canal adecuado y seguir su solicitud.</p>
 
     <div class="personas">
@@ -960,20 +909,33 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 
         <p class="ficha__consent">
           <svg class="i" aria-hidden="true"><use href="#i-check"/></svg>
-          <span>Los entrevistados autorizaron el uso de su nombre e información personal. <span class="mark">confirmar</span></span>
+          <span>Los entrevistados autorizaron el uso de su nombre e información personal.</span>
         </p>
       </aside>
     </div>
   </div>
 </section>
 
-<!-- ===================== 04 · PROPUESTA (clara) =====================
+<!-- ===================== 03a · PROPUESTA (clara) =====================
      GUIÓN (no se muestra en pantalla):
      Esto es lo que construimos: un módulo, no una app aparte. La persona no tiene que
      buscar un canal de privacidad ni entender qué derecho le corresponde — aparece la
      opción ahí mismo, en el resultado. Y algo importante para la empresa: los datos nunca
      se mueven de sus sistemas. Nosotros coordinamos quién responde, en qué plazo, y dejamos
      la evidencia — no creamos una base paralela con la información de sus clientes.
+
+     SI PREGUNTAN POR LA COMPETENCIA EN CHILE (a agosto de 2026):
+     · LeyDeDatos — API, SDK y automatización de solicitudes; sin flujo para explicar una
+       decisión concreta y pedir revisión.
+     · PDP Suite — orquesta derechos y evidencia entre áreas; foco en la operación interna.
+     · Confirmer360 — portal del titular con RUT; portal general, no módulo en la decisión.
+     · SIDAP de Surtika — cumplimiento completo con plazos y alertas; no conecta
+       explicación, punto de vista y revisión con un caso.
+     · OneTrust Chile — internacional y madura; compite de frente si nos reducimos a
+       gestionar solicitudes.
+     · También Soyio, y los sustitutos de siempre: planillas, CRM, tickets o desarrollo
+       interno. Todo esto es lo que publican los propios proveedores: no permite confirmar
+       su madurez ni su adopción real.
 -->
 <section class="sec" id="propuesta" data-nombre="Propuesta">
   <div class="wrap">
@@ -1014,21 +976,6 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
       <svg class="i" aria-hidden="true"><use href="#i-chispa"/></svg>
       <span>Tus datos nunca salen de los sistemas de la empresa. Clario coordina el proceso — no los reemplaza.</span>
     </p>
-
-    <div class="banda">
-      <p class="banda__fila">
-        <span class="lbl">Lo que hoy puede contratar una organización en Chile</span>
-        <span class="chips">
-          <span class="chip">LeyDeDatos</span>
-          <span class="chip">PDP Suite</span>
-          <span class="chip">Confirmer360</span>
-          <span class="chip">SIDAP · Surtika</span>
-          <span class="chip">OneTrust Chile</span>
-          <span class="chip">Soyio</span>
-        </span>
-      </p>
-      <p class="banda__nota"><b>Ninguna arranca en la decisión:</b> todas parten de un formulario de privacidad. Según lo que publican los propios proveedores. Compiten también los sustitutos de siempre: planillas, CRM, tickets o desarrollo interno.</p>
-    </div>
   </div>
 </section>
 
@@ -1134,11 +1081,6 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
         <p>Una base común de derechos, con módulos para decisiones financieras, de seguros o laborales.</p>
       </li>
     </ol>
-
-    <p class="remate remate--riesgo">
-      <svg class="i" aria-hidden="true"><use href="#i-alerta"/></svg>
-      <span>Son <b>hipótesis, no ventajas probadas</b>: hay que validarlas frente a las plataformas existentes, la capacidad real de integración y la confianza de la persona en la misma institución que decidió.</span>
-    </p>
   </div>
 </section>
 

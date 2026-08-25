@@ -526,6 +526,29 @@ main{ margin-left:var(--rail-w); }
 .acciones .i{ font-size:15px; color:var(--accent); }
 
 /* 05 · alternativas */
+/* ============================================================
+   04b · FACTIBILIDAD — qué hay que construir y con qué empezar
+   ============================================================ */
+.tecnica{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:calc(var(--sp)*2); align-items:start; }
+.tecnica__lista{ display:grid; gap:calc(var(--sp)*.75); }
+.tecnica__lista li{ position:relative; padding-left:1.15em; font-size:var(--f-body); line-height:1.4; }
+.tecnica__lista li::before{
+  content:""; position:absolute; left:0; top:.62em; width:.55em; height:1px; background:var(--accent);
+}
+.mvp{
+  padding:calc(var(--sp)*1.3); border:1px solid var(--accent); border-radius:var(--r);
+  background:var(--accent-bg); display:grid; gap:calc(var(--sp)*.8);
+}
+.mvp__lbl{
+  display:inline-flex; align-items:center; gap:.5em;
+  font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); font-weight:700;
+}
+.mvp p{ font-size:var(--f-sm); line-height:1.5; }
+.mvp__despues{ display:grid; gap:.4em; padding-top:calc(var(--sp)*.8); border-top:1px solid var(--line); }
+.mvp__despues li{ color:var(--ink-2); font-size:var(--f-sm); }
+.mvp__despues b{ color:var(--ink); font-weight:650; }
+
 .chips{ display:flex; flex-wrap:wrap; gap:.45em; align-items:center; }
 .chip{
   font-size:var(--f-xs); letter-spacing:.06em; color:var(--ink-2);
@@ -686,7 +709,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
       .sectores{ grid-template-columns:repeat(2,1fr); }
   .cita-bloque{ grid-template-columns:1fr; }
   .comilla{ display:none; }
-  .cambio, .propuesta, .columnas, .cajas-3, .dif, .personas, .hallazgo{ grid-template-columns:1fr; }
+  .cambio, .propuesta, .columnas, .cajas-3, .dif, .personas, .hallazgo, .tecnica{ grid-template-columns:1fr; }
   /* La cifra protagonista se escala por ancho: en vertical no cabe a la altura del viewport */
   .cifra-hero{ font-size:clamp(30px, 12vw, 58px); }
   .cita{ max-width:none; }
@@ -746,7 +769,8 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
     <li><a class="rail__item" href="#hipotesis"><span class="dash" aria-hidden="true"></span><span class="n">01</span><span class="t">Hipótesis</span></a></li>
     <li><a class="rail__item" href="#segmento"><span class="dash" aria-hidden="true"></span><span class="n">02</span><span class="t">Segmento</span></a></li>
     <li><a class="rail__item" href="#hallazgo"><span class="dash" aria-hidden="true"></span><span class="n">03</span><span class="t">Hallazgo</span></a></li>
-    <li><a class="rail__item" href="#propuesta"><span class="dash" aria-hidden="true"></span><span class="n">04</span><span class="t">Propuesta</span></a></li>
+    <li><a class="rail__item" href="#propuesta"><span class="dash" aria-hidden="true"></span><span class="n">04a</span><span class="t">Propuesta</span></a></li>
+    <li><a class="rail__item" href="#factibilidad"><span class="dash" aria-hidden="true"></span><span class="n">04b</span><span class="t">Factibilidad</span></a></li>
     <li><a class="rail__item" href="#alternativas"><span class="dash" aria-hidden="true"></span><span class="n">05</span><span class="t">Alternativas</span></a></li>
     <li><a class="rail__item" href="#diferenciacion"><span class="dash" aria-hidden="true"></span><span class="n">06</span><span class="t">Diferenciación</span></a></li>
     <li><a class="rail__item" href="#modelo-negocio"><span class="dash" aria-hidden="true"></span><span class="n">07a</span><span class="t">Viabilidad</span></a></li>
@@ -952,8 +976,9 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 <section class="sec" id="propuesta" data-nombre="Propuesta">
   <div class="wrap">
     <header class="sec__head">
-      <div class="sec__num"><span class="n">04</span><span class="sep">·</span><span>Propuesta</span></div>
+      <div class="sec__num"><span class="n">04a</span><span class="sep">·</span><span>Propuesta</span></div>
       <h2 class="sec__title">La propuesta</h2>
+      <p class="sec__intro">Clario es una capa modular que la organización integra en su propio canal —web o app— y que se activa en el momento en que comunica una decisión. Conecta el resultado con los antecedentes que lo sustentaron, el derecho que corresponde y quien puede revisarlo. No es un portal de privacidad aparte ni una base de datos nueva.</p>
     </header>
 
     <div class="propuesta">
@@ -990,8 +1015,55 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   </div>
 </section>
 
+<!-- ===================== 04b · FACTIBILIDAD (clara, tono alterno) =====================
+     GUIÓN (no se muestra en pantalla):
+     La arquitectura no reemplaza nada de lo que el banco ya tiene: se conecta con los
+     sistemas que generan la decisión, las fuentes de datos y los mecanismos de identidad
+     que ya existen. Lo que construimos nosotros son los componentes que se embeben en su
+     canal, el motor de flujos y plazos, y el registro de evidencia. Empezamos chico a
+     propósito: una organización, un sector, un tipo de decisión. Y algo clave para el
+     área de seguridad del cliente: no replicamos sus bases: guardamos estados, metadatos
+     y evidencia, nada más.
+-->
+<section class="sec sec--alt" id="factibilidad" data-nombre="Factibilidad">
+  <div class="wrap">
+    <header class="sec__head">
+      <div class="sec__num"><span class="n">04b</span><span class="sep">·</span><span>Factibilidad</span></div>
+      <h2 class="sec__title">Se conecta con lo que la organización ya tiene</h2>
+      <p class="sec__intro">Una arquitectura API-first con componentes de experiencia listos para integrar y adaptar a los canales de cada organización.</p>
+    </header>
+
+    <div class="tecnica">
+      <div>
+        <ul class="tecnica__lista">
+          <li>Componentes visuales embebibles, con marca, lenguaje y accesibilidad configurables</li>
+          <li>Conectores con los sistemas empresariales y las fuentes de datos existentes</li>
+          <li>Eventos que activan el módulo al producirse una decisión</li>
+          <li>Motor de flujos, responsables y plazos</li>
+          <li>Consola de gestión interna y registros de auditoría</li>
+          <li>Núcleo común de derechos, con módulos por sector</li>
+        </ul>
+      </div>
+
+      <aside class="mvp">
+        <p class="mvp__lbl"><svg class="i"><use href="#i-target"/></svg>MVP 0</p>
+        <p>Una organización, un sector, un tipo de decisión: <b>rechazo de crédito</b>. Integraciones mínimas de identidad, canal y gestión de casos.</p>
+        <ul class="mvp__despues">
+          <li><b>Después:</b> automatización con CRM y fuentes de datos</li>
+          <li><b>Más adelante:</b> multiempresa y módulos sectoriales</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="remate">
+      <svg class="i" aria-hidden="true"><use href="#i-escudo"/></svg>
+      <span>El módulo conserva solo estados, metadatos y evidencia, con cifrado, control de accesos, trazabilidad y plazos de eliminación. La API facilita la conexión, pero no resuelve sistemas opacos o sin trazabilidad: esa parte la pone la organización.</span>
+    </p>
+  </div>
+</section>
+
 <!-- ===================== 05 · ALTERNATIVAS (clara, tono alterno) ===================== -->
-<section class="sec sec--alt" id="alternativas" data-nombre="Alternativas">
+<section class="sec" id="alternativas" data-nombre="Alternativas">
   <div class="wrap">
     <header class="sec__head">
       <div class="sec__num"><span class="n">05</span><span class="sep">·</span><span>Alternativas</span></div>
@@ -1038,7 +1110,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 </section>
 
 <!-- ===================== 06 · DIFERENCIACIÓN (clara) ===================== -->
-<section class="sec" id="diferenciacion" data-nombre="Diferenciación">
+<section class="sec sec--alt" id="diferenciacion" data-nombre="Diferenciación">
   <div class="wrap">
     <header class="sec__head">
       <div class="sec__num"><span class="n">06</span><span class="sep">·</span><span>Diferenciación</span></div>

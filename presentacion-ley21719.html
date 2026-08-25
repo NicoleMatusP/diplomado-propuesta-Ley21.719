@@ -462,7 +462,7 @@ main{ margin-left:var(--rail-w); }
    04 · PROPUESTA
    ============================================================ */
 .propuesta{
-  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);
   gap:calc(var(--sp)*2); align-items:center;
 }
 .pasos{ display:grid; gap:calc(var(--sp)*.9); }
@@ -480,7 +480,7 @@ main{ margin-left:var(--rail-w); }
 }
 .mockup{
   border:2px dashed var(--line); border-radius:var(--r);
-  aspect-ratio:16/10; width:100%;
+  aspect-ratio:16/9; width:100%;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   gap:calc(var(--sp)*.7); text-align:center; padding:var(--sp);
   color:var(--risk); background:var(--bg-alt);
@@ -549,6 +549,17 @@ main{ margin-left:var(--rail-w); }
 .mvp__despues li{ color:var(--ink-2); font-size:var(--f-sm); }
 .mvp__despues b{ color:var(--ink); font-weight:650; }
 
+.banda{
+  margin-top:calc(var(--sp)*1.2); padding-top:calc(var(--sp)*1.1);
+  border-top:1px solid var(--line); display:grid; gap:.55em;
+}
+.banda__fila{ display:flex; flex-wrap:wrap; gap:.5em .9em; align-items:center; }
+.banda__fila .lbl{
+  font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-2); font-weight:700; white-space:nowrap;
+}
+.banda__nota{ color:var(--ink-2); font-size:var(--f-xs); line-height:1.5; }
+.banda__nota b{ color:var(--ink); font-weight:650; }
 .chips{ display:flex; flex-wrap:wrap; gap:.45em; align-items:center; }
 .chip{
   font-size:var(--f-xs); letter-spacing:.06em; color:var(--ink-2);
@@ -771,11 +782,10 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
     <li><a class="rail__item" href="#hallazgo"><span class="dash" aria-hidden="true"></span><span class="n">03</span><span class="t">Hallazgo</span></a></li>
     <li><a class="rail__item" href="#propuesta"><span class="dash" aria-hidden="true"></span><span class="n">04a</span><span class="t">Propuesta</span></a></li>
     <li><a class="rail__item" href="#factibilidad"><span class="dash" aria-hidden="true"></span><span class="n">04b</span><span class="t">Factibilidad</span></a></li>
-    <li><a class="rail__item" href="#alternativas"><span class="dash" aria-hidden="true"></span><span class="n">05</span><span class="t">Alternativas</span></a></li>
-    <li><a class="rail__item" href="#diferenciacion"><span class="dash" aria-hidden="true"></span><span class="n">06</span><span class="t">Diferenciación</span></a></li>
-    <li><a class="rail__item" href="#modelo-negocio"><span class="dash" aria-hidden="true"></span><span class="n">07a</span><span class="t">Viabilidad</span></a></li>
-    <li><a class="rail__item" href="#viabilidad"><span class="dash" aria-hidden="true"></span><span class="n">07b</span><span class="t">Sostenibilidad</span></a></li>
-    <li><a class="rail__item" href="#cierre"><span class="dash" aria-hidden="true"></span><span class="n">08</span><span class="t">Cierre</span></a></li>
+    <li><a class="rail__item" href="#diferenciacion"><span class="dash" aria-hidden="true"></span><span class="n">05</span><span class="t">Diferenciación</span></a></li>
+    <li><a class="rail__item" href="#modelo-negocio"><span class="dash" aria-hidden="true"></span><span class="n">06a</span><span class="t">Viabilidad</span></a></li>
+    <li><a class="rail__item" href="#viabilidad"><span class="dash" aria-hidden="true"></span><span class="n">06b</span><span class="t">Sostenibilidad</span></a></li>
+    <li><a class="rail__item" href="#cierre"><span class="dash" aria-hidden="true"></span><span class="n">07</span><span class="t">Cierre</span></a></li>
   </ol>
 
   <div class="rail__pie">Ley 21.719 · Pitch final</div>
@@ -1011,6 +1021,21 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
       <svg class="i" aria-hidden="true"><use href="#i-chispa"/></svg>
       <span>Tus datos nunca salen de los sistemas de la empresa. Clario coordina el proceso — no los reemplaza.</span>
     </p>
+
+    <div class="banda">
+      <p class="banda__fila">
+        <span class="lbl">Lo que hoy puede contratar una organización en Chile</span>
+        <span class="chips">
+          <span class="chip">LeyDeDatos</span>
+          <span class="chip">PDP Suite</span>
+          <span class="chip">Confirmer360</span>
+          <span class="chip">SIDAP · Surtika</span>
+          <span class="chip">OneTrust Chile</span>
+          <span class="chip">Soyio</span>
+        </span>
+      </p>
+      <p class="banda__nota"><b>Ninguna arranca en la decisión:</b> todas parten de un formulario de privacidad. Según lo que publican los propios proveedores. Compiten también los sustitutos de siempre: planillas, CRM, tickets o desarrollo interno.</p>
+    </div>
   </div>
 </section>
 
@@ -1061,61 +1086,33 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   </div>
 </section>
 
-<!-- ===================== 05 · ALTERNATIVAS (clara, tono alterno) ===================== -->
-<section class="sec" id="alternativas" data-nombre="Alternativas">
+<!-- ===================== 05 · REFERENTES Y DIFERENCIACIÓN (clara) =====================
+     GUIÓN (no se muestra en pantalla):
+     Miramos seis plataformas internacionales para diseñar el producto: OneTrust, TrustArc
+     y DataGrail gestionan solicitudes de derechos; ServiceNow resuelve la coordinación
+     interna; Fiddler y Credo AI explican modelos. Ninguna junta las dos cosas. Ahí está
+     el espacio: combinar gestión de derechos con explicación de decisiones, y activarlo
+     en el momento en que la decisión se comunica.
+-->
+<section class="sec" id="diferenciacion" data-nombre="Diferenciación">
   <div class="wrap">
     <header class="sec__head">
-      <div class="sec__num"><span class="n">05</span><span class="sep">·</span><span>Alternativas</span></div>
-      <h2 class="sec__title">Ya hay plataformas. Ninguna llega al momento que importa.</h2>
-      <p class="sec__intro">A agosto de 2026 el mercado chileno ya vende cumplimiento. Todas arrancan en un formulario de privacidad; nosotros arrancamos en el rechazo.</p>
+      <div class="sec__num"><span class="n">05</span><span class="sep">·</span><span>Referentes y diferenciación</span></div>
+      <h2 class="sec__title">Empezamos donde las otras terminan: en la decisión</h2>
+      <p class="sec__intro">Las demás esperan a que la persona encuentre el canal de privacidad. Clario aparece en la pantalla del rechazo, cuando todavía está mirando.</p>
     </header>
 
-    <div class="tabla-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Solución</th>
-            <th scope="col">Qué publica</th>
-            <th scope="col">Dónde se queda corta</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">LeyDeDatos</th><td>API, SDK, automatización de solicitudes y trazabilidad</td><td>Sin flujo para explicar una decisión concreta y pedir revisión</td></tr>
-          <tr><th scope="row">PDP Suite</th><td>Orquesta derechos, consentimientos y evidencia entre áreas</td><td>Foco en la operación interna, no en la experiencia de la persona</td></tr>
-          <tr><th scope="row">Confirmer360</th><td>Portal del titular autenticado con RUT, plazos y trazabilidad</td><td>Portal general de derechos, no módulo dentro de la decisión</td></tr>
-          <tr><th scope="row">SIDAP · Surtika</th><td>Cumplimiento completo con cronómetros y alertas</td><td>No conecta explicación, punto de vista y revisión con un caso</td></tr>
-          <tr><th scope="row">OneTrust Chile</th><td>Plataforma internacional madura, con implementación local</td><td>Compite de frente si nos reducimos a gestionar solicitudes</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="bloque-chips">
-      <span class="lbl">Benchmark internacional</span>
-      <div class="chips">
+    <p class="banda__fila" style="margin-bottom:calc(var(--sp)*1.4)">
+      <span class="lbl">Referentes internacionales</span>
+      <span class="chips">
         <span class="chip">OneTrust</span>
         <span class="chip">TrustArc</span>
         <span class="chip">DataGrail</span>
         <span class="chip">ServiceNow</span>
         <span class="chip">Fiddler</span>
         <span class="chip">Credo AI</span>
-      </div>
-    </div>
-
-    <p class="nota-fuente">
-      <svg class="i" aria-hidden="true"><use href="#i-alerta"/></svg>
-      <span class="k">La evidencia es lo que publican los propios proveedores: no permite confirmar su madurez ni su adopción real. También existen Soyio y otros sustitutos —planillas, CRM, tickets o desarrollo interno— que bastan cuando el volumen es bajo.</span>
+      </span>
     </p>
-  </div>
-</section>
-
-<!-- ===================== 06 · DIFERENCIACIÓN (clara) ===================== -->
-<section class="sec sec--alt" id="diferenciacion" data-nombre="Diferenciación">
-  <div class="wrap">
-    <header class="sec__head">
-      <div class="sec__num"><span class="n">06</span><span class="sep">·</span><span>Diferenciación</span></div>
-      <h2 class="sec__title">Empezamos donde las otras terminan: en la decisión</h2>
-      <p class="sec__intro">Las demás esperan a que la persona encuentre el canal de privacidad. Clario aparece en la pantalla del rechazo, cuando todavía está mirando.</p>
-    </header>
 
     <ol class="dif">
       <li>
@@ -1152,7 +1149,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   </div>
 </section>
 
-<!-- ===================== 07 · VIABILIDAD · POR QUÉ NOS COMPRAN (oscura) =====================
+<!-- ===================== 06a · VIABILIDAD · POR QUÉ NOS COMPRAN (oscura) =====================
      GUIÓN (no se muestra en pantalla):
      Acá el negocio no se gana con nuestro margen, se gana demostrando el ahorro del cliente.
      Reconstruimos desde cero cuánto le cuesta a un banco responder una solicitud de datos hoy:
@@ -1169,7 +1166,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 
   <div class="wrap">
     <div class="sec__num">
-      <span class="n">07a</span><span class="sep">·</span><span>Viabilidad</span>
+      <span class="n">06a</span><span class="sep">·</span><span>Viabilidad</span>
       <span class="sep">·</span><span>Por qué nos compran</span>
     </div>
 
@@ -1204,7 +1201,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   </div>
 </section>
 
-<!-- ===================== 08 · VIABILIDAD · POR QUÉ SE SOSTIENE (oscura) =====================
+<!-- ===================== 06b · VIABILIDAD · POR QUÉ SE SOSTIENE (oscura) =====================
      GUIÓN (no se muestra en pantalla):
      El equilibrio se alcanza con cinco clientes, en un mercado de ciento cincuenta empresas
      grandes obligadas. Eso es alcanzable.
@@ -1224,7 +1221,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 
   <div class="wrap">
     <div class="sec__num">
-      <span class="n">07b</span><span class="sep">·</span><span>Viabilidad</span>
+      <span class="n">06b</span><span class="sep">·</span><span>Viabilidad</span>
       <span class="sep">·</span><span>Sostenibilidad del modelo</span>
     </div>
 
@@ -1257,7 +1254,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   </div>
 </section>
 
-<!-- ===================== 08 · CIERRE (clara, tono alterno) =====================
+<!-- ===================== 07 · CIERRE (clara, tono alterno) =====================
      GUIÓN (no se muestra en pantalla):
      Sabemos que el dolor es real y se repite entre sectores, y que el negocio tiene un punto
      de equilibrio alcanzable. Lo que no sabemos honestamente: cuánto volumen real vamos a ver
@@ -1270,7 +1267,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 <section class="sec sec--alt" id="cierre" data-nombre="Cierre">
   <div class="wrap">
     <header class="sec__head">
-      <div class="sec__num"><span class="n">08</span><span class="sep">·</span><span>Cierre</span></div>
+      <div class="sec__num"><span class="n">07</span><span class="sep">·</span><span>Cierre</span></div>
       <h2 class="sec__title">Qué sabemos, qué no, y qué haríamos ahora</h2>
     </header>
 

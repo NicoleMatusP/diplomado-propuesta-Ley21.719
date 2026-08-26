@@ -434,90 +434,29 @@ main{ margin-left:var(--rail-w); }
 }
 .nota-datos .i{ font-size:15px; color:var(--accent); flex:none; margin-top:.1em; }
 
-/* Mockup: flujo de tres pantallas en marcos de iPhone dibujados en CSS.
-   La tipografía interior escala con el ancho del marco (container query),
-   así los tres teléfonos se ven proporcionados sin ajustes a mano. */
-.flujo{ display:flex; align-items:flex-start; justify-content:center; gap:clamp(6px,.75vw,12px); width:100%; }
-.tel{ display:flex; flex-direction:column; align-items:center; gap:calc(var(--sp)*.5); flex:1 1 0; min-width:0; max-width:23vh; }
-.tel__paso{
-  font-size:var(--f-xs); letter-spacing:.14em; text-transform:uppercase;
-  color:var(--ink-2); font-weight:700;
-}
-.tel__paso b{ color:var(--accent); }
-.telefono__marco{
-  container-type:inline-size;
-  position:relative; width:100%; aspect-ratio:9/18;
-  padding:clamp(4px,.6vh,7px); border-radius:clamp(14px,2.2vh,22px);
-  background:#0A0C0F;
-  box-shadow:0 14px 30px rgba(10,14,22,.20), inset 0 0 0 1px rgba(255,255,255,.07);
-}
-.telefono__isla{
-  position:absolute; z-index:2; top:clamp(7px,1vh,11px); left:50%; transform:translateX(-50%);
-  width:30%; height:clamp(7px,.95vh,11px); border-radius:999px; background:#0A0C0F;
-}
-.telefono__pantalla{
-  height:100%; overflow:hidden; border-radius:clamp(11px,1.7vh,17px);
-  background:#FBF7F1; color:#26211C;
-  display:flex; flex-direction:column; gap:.5em;
-  padding:2.4em .9em .9em;
-  font-size:9px; font-size:5.7cqw; line-height:1.32;
-}
-.app__estado{ display:flex; justify-content:space-between; color:#6B655C; font-size:.82em; font-weight:650; }
-.app__estado .señal{ display:flex; gap:1.5px; align-items:center; }
-.app__estado .señal i{ width:2.5px; height:5px; border-radius:1px; background:#6B655C; display:block; }
-.app__marca{
-  display:flex; align-items:center; gap:.4em; padding-bottom:.45em;
-  border-bottom:1px solid #E3DACD; color:#6B655C;
-  font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.88em;
-}
-.app__marca .punto{ width:.75em; height:.75em; border-radius:2px; background:#C9C0B4; }
-.app__marca svg{ height:1.1em; width:auto; fill:none; color:#26211C; }
-.app__lbl{ color:#6B655C; font-size:.88em; }
-.app__fila{
-  display:flex; justify-content:space-between; align-items:center; gap:.4em;
-  padding:.5em .6em; border:1px solid #E3DACD; border-radius:.7em; color:#6B655C; font-size:.92em;
-}
-.app__fila--activa{
-  border-color:rgba(27,95,217,.35); background:rgba(27,95,217,.07);
-  color:#26211C; font-weight:650;
-}
-.app__fila--activa em{ display:block; font-style:normal; color:#1B5FD9; font-size:.85em; font-weight:700; }
-.app__caso{ color:#6B655C; font-size:.9em; }
-.app__fallo{ font-family:var(--display); font-size:1.7em; font-weight:700; color:#A13D3D; letter-spacing:-.015em; line-height:1.05; }
-.app__btn{ text-align:center; border-radius:999px; padding:.55em .4em; font-weight:700; font-size:.92em; }
-.app__btn--primario{ background:#1B5FD9; color:#FBF7F1; }
-.app__btn--secundario{ border:1px solid #E3DACD; color:#26211C; }
-.app__pie{ text-align:center; color:#6B655C; font-size:.8em; }
-
-/* Datos considerados, en formato de trazabilidad */
-.rastro{ display:grid; gap:.5em; }
-.rastro li{ position:relative; padding-left:1.15em; }
-.rastro li::before{
-  content:""; position:absolute; left:0; top:.34em;
-  width:.45em; height:.45em; border-radius:50%; background:#1B5FD9;
-}
-.rastro li:not(:last-child)::after{
-  content:""; position:absolute; left:.2em; top:.9em; bottom:-.5em;
-  width:1px; background:rgba(27,95,217,.3);
-}
-.rastro b{ display:block; font-weight:650; font-size:.95em; }
-.rastro span{ color:#6B655C; font-size:.82em; }
-.tel figcaption{ color:var(--ink-2); font-size:var(--f-xs); }
-
-
 /* ============================================================
-   PIEZAS COMPARTIDAS DE CONTENIDO REAL
+   PIEZAS DE CONTENIDO (restauradas): referencia legal, acciones,
+   chips, disparador, factibilidad y diferenciación
    ============================================================ */
-/* Referencia legal discreta junto a un derecho o exigencia */
 .art{
   display:inline-block; white-space:nowrap;
   font-size:var(--f-xs); letter-spacing:.08em; font-weight:650;
   color:var(--accent); background:var(--accent-bg);
   border-radius:999px; padding:.22em .6em;
 }
+.chips{ display:flex; flex-wrap:wrap; gap:.45em; align-items:center; }
+.chip{
+  font-size:var(--f-xs); letter-spacing:.06em; font-weight:600;
+  color:var(--accent); background:var(--accent-bg);
+  border:1px solid var(--chip-bd); border-radius:999px; padding:.3em .75em;
+}
+.banda__fila{ display:flex; flex-wrap:wrap; gap:.5em .9em; align-items:center; }
+.banda__fila .lbl{
+  font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-2); font-weight:700; white-space:nowrap;
+}
 
-
-/* 04 · lo que la persona puede hacer */
+/* 03a · disparador y acciones */
 .boton-ctx{ color:var(--ink-2); font-size:var(--f-sm); }
 .boton-demo{
   display:inline-flex; align-items:center; gap:.6em;
@@ -527,21 +466,29 @@ main{ margin-left:var(--rail-w); }
   padding:.72em 1.15em; border-radius:999px;
 }
 .boton-demo .i{ font-size:15px; stroke-width:2; }
-.acciones{ margin-top:calc(var(--sp)*1.2); display:grid; }
+.acciones{
+  margin-top:calc(var(--sp)*1); display:grid;
+  border:1px solid var(--line); border-radius:var(--r);
+  background:var(--bg-alt); padding:0 calc(var(--sp)*1.1);
+}
 .acciones li{
   display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:.7em;
-  align-items:center; padding:calc(var(--sp)*.6) 0;
+  align-items:center; padding:calc(var(--sp)*.65) 0;
   border-bottom:1px solid var(--line); font-size:var(--f-body);
 }
 .acciones li:last-child{ border-bottom:0; }
 .acciones .i{ font-size:15px; color:var(--accent); }
 
-/* 05 · alternativas */
-/* ============================================================
-   04b · FACTIBILIDAD — qué hay que construir y con qué empezar
-   ============================================================ */
-.tecnica{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:calc(var(--sp)*2); align-items:start; }
-.tecnica__lista{ display:grid; gap:calc(var(--sp)*.75); }
+/* 03b · qué hay que construir y con qué empezar */
+.tecnica{
+  display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:calc(var(--sp)*1.6); align-items:start;
+}
+.tecnica__lista{
+  display:grid; gap:calc(var(--sp)*.7);
+  border:1px solid var(--line); border-radius:var(--r);
+  background:var(--bg-alt); padding:calc(var(--sp)*1.2) calc(var(--sp)*1.3);
+}
 .tecnica__lista li{ position:relative; padding-left:1.15em; font-size:var(--f-body); line-height:1.4; }
 .tecnica__lista li::before{
   content:""; position:absolute; left:0; top:.62em; width:.55em; height:1px; background:var(--accent);
@@ -560,38 +507,7 @@ main{ margin-left:var(--rail-w); }
 .mvp__despues li{ color:var(--ink-2); font-size:var(--f-sm); }
 .mvp__despues b{ color:var(--ink); font-weight:650; }
 
-.banda{
-  margin-top:calc(var(--sp)*1.2); padding-top:calc(var(--sp)*1.1);
-  border-top:1px solid var(--line); display:grid; gap:.55em;
-}
-.banda__fila{ display:flex; flex-wrap:wrap; gap:.5em .9em; align-items:center; }
-.banda__fila .lbl{
-  font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
-  color:var(--ink-2); font-weight:700; white-space:nowrap;
-}
-.chips{ display:flex; flex-wrap:wrap; gap:.45em; align-items:center; }
-.chip{
-  font-size:var(--f-xs); letter-spacing:.06em; font-weight:600;
-  color:var(--accent); background:var(--accent-bg);
-  border:1px solid var(--chip-bd); border-radius:999px; padding:.3em .75em;
-}
-
-/* Tabla compacta (vuelve para el cuadro de alternativas) */
-.tabla-wrap{ margin-top:calc(var(--sp)*1.4); overflow-x:auto; }
-table{ width:100%; border-collapse:collapse; font-size:var(--f-sm); }
-th,td{
-  text-align:left; padding:calc(var(--sp)*.62) calc(var(--sp)*.8);
-  border-bottom:1px solid var(--line); vertical-align:top;
-}
-thead th{
-  font-size:var(--f-xs); letter-spacing:.14em; text-transform:uppercase;
-  color:var(--ink-2); font-weight:650; border-bottom:1px solid var(--ink-2);
-}
-tbody th{ font-weight:650; color:var(--ink); width:22%; }
-td{ color:var(--ink-2); }
-tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
-
-/* 06 · los cinco elementos de diferenciación */
+/* 04 · los elementos de diferenciación */
 .dif{ display:grid; grid-template-columns:repeat(5,1fr); gap:calc(var(--sp)*.8); }
 .dif--3{ grid-template-columns:repeat(3,1fr); gap:calc(var(--sp)*1); }
 .dif--3 p{ font-size:var(--f-body); }
@@ -609,6 +525,99 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   letter-spacing:-.01em; line-height:1.15;
 }
 .dif p{ color:var(--ink-2); font-size:var(--f-sm); line-height:1.4; }
+
+/* Mockups: dos plataformas distintas, cada una con la capacidad de Clario
+   embebida en su propio lenguaje visual. Marcos dibujados en CSS y
+   tipografía interior escalada al ancho del marco (container query). */
+.mockups__head{ margin-bottom:calc(var(--sp)*1.1); }
+.mockups__head h3{
+  font-family:var(--display); font-size:var(--f-h3); font-weight:650;
+  letter-spacing:-.012em; line-height:1.2;
+}
+.mockups__head p{ margin-top:.3em; color:var(--ink-2); font-size:var(--f-sm); }
+.flujo{ display:flex; align-items:flex-start; justify-content:center; gap:clamp(10px,1.4vw,20px); width:100%; }
+.tel{
+  display:flex; flex-direction:column; align-items:center; gap:calc(var(--sp)*.45);
+  /* ancho fijo: si no, el largo del pie define el tamaño del marco */
+  flex:0 0 auto; width:min(48%, 26vh);
+}
+.tel figcaption{
+  color:var(--ink-2); font-size:var(--f-xs); letter-spacing:.12em; text-transform:uppercase; font-weight:650;
+}
+.telefono__marco{
+  container-type:inline-size;
+  position:relative; width:100%; aspect-ratio:9/18;
+  padding:clamp(4px,.6vh,7px); border-radius:clamp(14px,2.2vh,22px);
+  background:#0A0C0F;
+  box-shadow:0 14px 30px rgba(10,14,22,.20), inset 0 0 0 1px rgba(255,255,255,.07);
+}
+.telefono__isla{
+  position:absolute; z-index:2; top:clamp(7px,1vh,11px); left:50%; transform:translateX(-50%);
+  width:30%; height:clamp(7px,.95vh,11px); border-radius:999px; background:#0A0C0F;
+}
+.telefono__pantalla{
+  height:100%; overflow:hidden; border-radius:clamp(11px,1.7vh,17px);
+  display:flex; flex-direction:column;
+  font-size:10px; font-size:6cqw; line-height:1.3;
+}
+.barra{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1.9em .9em .3em; font-size:.8em; font-weight:700;
+}
+.barra i{ width:2.5px; height:5px; border-radius:1px; display:inline-block; margin-left:1.5px; }
+
+/* ---------- Plataforma bancaria: azul corporativo, pestañas arriba, botones apilados ---------- */
+.app--banco{ background:#F4F6F9; color:#0F2233; }
+.b-top{
+  background:#0E3B6F; color:#fff; padding:.55em .9em;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.b-top .marca{ display:flex; align-items:center; gap:.4em; font-weight:700; letter-spacing:.02em; }
+.b-top .cuadro{ width:.85em; height:.85em; background:#5FA8F5; border-radius:2px; }
+.b-tabs{ display:flex; gap:1.1em; background:#0E3B6F; padding:0 .9em; font-size:.85em; }
+.b-tabs span{ color:rgba(255,255,255,.62); padding-bottom:.45em; }
+.b-tabs .activa{ color:#fff; font-weight:700; box-shadow:inset 0 -2px 0 #5FA8F5; }
+.b-cuerpo{ padding:.8em .9em; display:grid; gap:.55em; }
+.b-label{ color:#5B6A7C; font-size:.85em; }
+.b-negativo{ font-family:var(--display); font-size:1.45em; font-weight:700; color:#B3261E; line-height:1.1; }
+.b-modulo{
+  margin-top:.2em; background:#fff; border:1px solid #DCE3EC; border-radius:4px;
+  padding:.75em .7em; display:grid; gap:.45em;
+}
+.b-modulo__tit{ font-weight:700; font-size:.95em; line-height:1.3; color:#0E3B6F; }
+.b-btn{
+  border-radius:3px; padding:.5em; text-align:center; font-weight:700; font-size:.88em;
+  border:1px solid #0E3B6F; color:#0E3B6F;
+}
+.b-btn--primario{ background:#0E3B6F; color:#fff; }
+.b-pie{ margin-top:.15em; color:#8A97A6; font-size:.72em; }
+
+/* ---------- Plataforma de seguros: morado, tarjetas redondeadas, navegación abajo ---------- */
+.app--seguro{ background:#FBF9FE; color:#241733; }
+.s-top{ padding:.5em .9em .2em; display:flex; align-items:center; gap:.45em; }
+.s-top .avatar{ width:1.4em; height:1.4em; border-radius:50%; background:#7A46B8; }
+.s-top .nombre{ font-weight:700; }
+.s-cuerpo{ padding:.5em .9em; display:grid; gap:.5em; }
+.s-label{ color:#6E6280; font-size:.85em; }
+.s-tarjeta{
+  background:#fff; border:1px solid #E7DEF3; border-radius:1em; padding:.7em .8em;
+  box-shadow:0 2px 6px rgba(91,46,140,.06);
+}
+.s-negativo{ font-family:var(--display); font-size:1.4em; font-weight:700; color:#A63A5C; line-height:1.1; }
+.s-modulo{ background:#F1E9FB; border-radius:1em; padding:.75em .8em; display:grid; gap:.45em; }
+.s-modulo__tit{ font-weight:700; font-size:.95em; line-height:1.3; color:#5B2E8C; }
+.s-lista{ display:grid; gap:.3em; }
+.s-lista li{
+  background:#fff; border-radius:.7em; padding:.5em .65em;
+  display:flex; justify-content:space-between; align-items:center; gap:.4em; font-size:.88em; font-weight:600;
+}
+.s-lista li span:last-child{ color:#7A46B8; font-weight:700; }
+.s-pie{ color:#8B80A0; font-size:.72em; }
+.s-nav{
+  margin-top:auto; display:flex; justify-content:space-around; align-items:center;
+  padding:.5em .4em .7em; border-top:1px solid #EDE6F7; background:#fff; font-size:.78em; color:#8B80A0;
+}
+.s-nav .activa{ color:#5B2E8C; font-weight:700; }
 
 /* ============================================================
    07 y 08 · VIABILIDAD — slides de una sola cifra protagonista
@@ -751,7 +760,11 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   .comilla{ display:none; }
   .cambio, .propuesta, .cajas-3, .dif, .personas, .hallazgo, .tecnica, .compran{ grid-template-columns:1fr; }
   /* La cifra protagonista se escala por ancho: en vertical no cabe a la altura del viewport */
-  .cifra-hero{ font-size:clamp(30px, 12vw, 58px); }
+  .cifra-hero, .cifra-hero.cifra-hero--compacta{ font-size:clamp(30px, 11vw, 58px); }
+  .cifra-media{ font-size:clamp(17px, 5.5vw, 29px); }
+  /* Los tres teléfonos se reacomodan solos: en fila si caben, uno por línea si no */
+  .flujo{ flex-wrap:wrap; justify-content:center; gap:calc(var(--sp)*1.2); }
+  .tel{ width:min(100%, 230px); }
   .cita{ max-width:none; }
   .deco__anillo{ display:none; }
 }
@@ -1039,60 +1052,71 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
         </p>
       </div>
 
-      <div class="flujo">
+      <div>
+        <header class="mockups__head">
+          <h3>Misma capacidad, integrada a cada experiencia</h3>
+          <p>Arquitectura API-first y componentes embebibles</p>
+        </header>
 
-        <figure class="tel">
-          <figcaption class="tel__paso"><b>01</b> Inicio</figcaption>
-          <div class="telefono__marco">
-            <div class="telefono__isla" aria-hidden="true"></div>
-            <div class="telefono__pantalla">
-              <p class="app__estado"><span>9:41</span><span class="señal" aria-hidden="true"><i></i><i></i><i></i></span></p>
-              <p class="app__marca"><span class="punto" aria-hidden="true"></span>Banco</p>
-              <p class="app__lbl">Mis productos</p>
-              <p class="app__fila"><span>Cuenta corriente</span><span>›</span></p>
-              <p class="app__fila"><span>Tarjeta de crédito</span><span>›</span></p>
-              <p class="app__fila app__fila--activa"><span>Solicitud de crédito<em>Ver estado</em></span><span>›</span></p>
+        <div class="flujo">
+
+          <figure class="tel">
+            <div class="telefono__marco">
+              <div class="telefono__isla" aria-hidden="true"></div>
+              <div class="telefono__pantalla app--banco">
+                <p class="barra"><span>9:41</span><span aria-hidden="true"><i style="background:#0F2233"></i><i style="background:#0F2233"></i><i style="background:#0F2233"></i></span></p>
+                <header class="b-top">
+                  <span class="marca"><span class="cuadro" aria-hidden="true"></span>Mi Banco</span>
+                  <span aria-hidden="true">☰</span>
+                </header>
+                <nav class="b-tabs"><span>Productos</span><span class="activa">Solicitudes</span></nav>
+                <div class="b-cuerpo">
+                  <p class="b-label">Crédito de consumo</p>
+                  <p class="b-negativo">Crédito no aprobado</p>
+                  <section class="b-modulo">
+                    <p class="b-modulo__tit">¿Quieres conocer qué información se utilizó o solicitar una revisión?</p>
+                    <p class="b-btn b-btn--primario">Conocer la información utilizada</p>
+                    <p class="b-btn">Informar un dato incorrecto</p>
+                    <p class="b-btn">Solicitar revisión humana</p>
+                    <p class="b-pie">Tecnología Clario</p>
+                  </section>
+                </div>
+              </div>
             </div>
-          </div>
-        </figure>
+            <figcaption>Plataforma bancaria</figcaption>
+          </figure>
 
-        <figure class="tel">
-          <figcaption class="tel__paso"><b>02</b> Resultado</figcaption>
-          <div class="telefono__marco">
-            <div class="telefono__isla" aria-hidden="true"></div>
-            <div class="telefono__pantalla">
-              <p class="app__estado"><span>9:41</span><span class="señal" aria-hidden="true"><i></i><i></i><i></i></span></p>
-              <p class="app__marca"><span class="punto" aria-hidden="true"></span>Solicitud</p>
-              <p class="app__caso">Crédito de consumo</p>
-              <p class="app__fallo">No aprobada</p>
-              <p class="app__lbl">Evaluamos tu solicitud con información de tus datos.</p>
-              <p class="app__btn app__btn--primario" style="margin-top:auto">Ver motivos del rechazo</p>
-              <p class="app__pie">Con Clario</p>
+          <figure class="tel">
+            <div class="telefono__marco">
+              <div class="telefono__isla" aria-hidden="true"></div>
+              <div class="telefono__pantalla app--seguro">
+                <p class="barra"><span>9:41</span><span aria-hidden="true"><i style="background:#241733"></i><i style="background:#241733"></i><i style="background:#241733"></i></span></p>
+                <header class="s-top">
+                  <span class="avatar" aria-hidden="true"></span>
+                  <span class="nombre">Mi Seguro</span>
+                </header>
+                <div class="s-cuerpo">
+                  <p class="s-label">Solicitud de cobertura</p>
+                  <div class="s-tarjeta"><p class="s-negativo">Cobertura no aprobada</p></div>
+                  <section class="s-modulo">
+                    <p class="s-modulo__tit">Conoce la información utilizada y qué puedes hacer</p>
+                    <ul class="s-lista">
+                      <li><span>Conocer la información utilizada</span><span aria-hidden="true">›</span></li>
+                      <li><span>Informar un dato incorrecto</span><span aria-hidden="true">›</span></li>
+                      <li><span>Solicitar revisión humana</span><span aria-hidden="true">›</span></li>
+                    </ul>
+                    <p class="s-pie">Tecnología Clario</p>
+                  </section>
+                </div>
+                <nav class="s-nav"><span>Inicio</span><span class="activa">Coberturas</span><span>Perfil</span></nav>
+              </div>
             </div>
-          </div>
-        </figure>
+            <figcaption>Plataforma de seguros</figcaption>
+          </figure>
 
-        <figure class="tel">
-          <figcaption class="tel__paso"><b>03</b> Motivos</figcaption>
-          <div class="telefono__marco">
-            <div class="telefono__isla" aria-hidden="true"></div>
-            <div class="telefono__pantalla">
-              <p class="app__estado"><span>9:41</span><span class="señal" aria-hidden="true"><i></i><i></i><i></i></span></p>
-              <p class="app__marca"><svg viewBox="0 0 96 76" aria-hidden="true"><use href="#logo-clario"/></svg>Clario</p>
-              <p class="app__lbl">Información considerada</p>
-              <ul class="rastro">
-                <li><b>Ingresos declarados</b><span>Formulario de solicitud</span></li>
-                <li><b>Historial de pagos</b><span>Registro interno del banco</span></li>
-                <li><b>Deuda vigente</b><span>Informe comercial</span></li>
-              </ul>
-              <p class="app__btn app__btn--secundario" style="margin-top:auto">Marcar un dato incorrecto</p>
-              <p class="app__btn app__btn--primario">Pedir revisión humana</p>
-              <p class="app__pie">Respuesta en 30 días</p>
-            </div>
-          </div>
-        </figure>
-
+        </div>
       </div>
+
     </div>
   </div>
 </section>

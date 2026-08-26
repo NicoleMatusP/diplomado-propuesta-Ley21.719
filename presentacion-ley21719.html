@@ -44,6 +44,7 @@
   /* Tipografía: 100% del sistema, sin descargas externas */
   --sans: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --serif: ui-serif, Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   /* Títulos y cifras: grotesca con carácter, distinta del cuerpo */
   --display: "Space Grotesk", ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
@@ -125,7 +126,6 @@ ul,ol{ padding:0; list-style:none; }
   background:var(--accent-bg); color:var(--accent);
   font-size:clamp(14px,2vh,18px); flex:none;
 }
-.ico--olive{ background:var(--olive-bg); color:var(--olive); }
 
 /* ============================================================
    RIEL LATERAL IZQUIERDO + INDICADOR DE PROGRESO
@@ -214,7 +214,6 @@ main{ margin-left:var(--rail-w); }
 .sec--dark .equipo li,
 .sec--dark .caja3,
 .sec--dark .pasos li,
-.sec--dark .col,
 .sec--dark .ficha{
   background-image:linear-gradient(158deg, rgba(255,255,255,.05), rgba(255,255,255,0) 58%);
 }
@@ -230,15 +229,16 @@ main{ margin-left:var(--rail-w); }
 .sec__title{
   font-family:var(--display);
   font-size:var(--f-h2); line-height:1.07; font-weight:650; letter-spacing:-.024em;
-  max-width:22ch;
+  max-width:34ch;
 }
+.sec__title--ancho{ max-width:none; }
 .sec__intro{
-  margin-top:calc(var(--sp)*.7); color:var(--ink-2); max-width:62ch;
+  margin-top:calc(var(--sp)*.7); color:var(--ink-2);
 }
 .sec__head{
-  padding-bottom:calc(var(--sp)*1.1);
+  padding-bottom:calc(var(--sp)*1.2);
   border-bottom:1px solid var(--line);
-  margin-bottom:calc(var(--sp)*1.6);
+  margin-bottom:calc(var(--sp)*2.2);
 }
 
 /* Etiqueta de contenido pendiente de reemplazar */
@@ -335,7 +335,7 @@ main{ margin-left:var(--rail-w); }
 /* ============================================================
    01 · PROBLEMA — sectores, personas y remate
    ============================================================ */
-.problema__txt{ margin-top:calc(var(--sp)*1.2); color:var(--ink-2); max-width:92ch; }
+.problema__txt{ margin-top:calc(var(--sp)*1.2); color:var(--ink-2); }
 .personas{
   margin-top:calc(var(--sp)*1.4);
   display:grid; grid-template-columns:1fr 1fr; gap:calc(var(--sp)*.9);
@@ -423,8 +423,8 @@ main{ margin-left:var(--rail-w); }
    04 · PROPUESTA
    ============================================================ */
 .propuesta{
-  display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);
-  gap:calc(var(--sp)*2); align-items:center;
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);
+  gap:calc(var(--sp)*1.6); align-items:center;
 }
 .pasos{ display:grid; gap:calc(var(--sp)*.9); }
 .pasos li{
@@ -439,6 +439,84 @@ main{ margin-left:var(--rail-w); }
   color:var(--accent); font-size:var(--f-xs); font-weight:700; letter-spacing:.12em;
   font-variant-numeric:tabular-nums;
 }
+.nota-datos{
+  margin-top:calc(var(--sp)*1.2); padding:calc(var(--sp)*.85) calc(var(--sp)*1);
+  display:flex; gap:.7em; align-items:flex-start;
+  border:1px solid var(--accent); border-radius:var(--r); background:var(--accent-bg);
+  font-size:var(--f-sm); line-height:1.45;
+}
+.nota-datos .i{ font-size:15px; color:var(--accent); flex:none; margin-top:.1em; }
+
+/* Mockup: flujo de tres pantallas en marcos de iPhone dibujados en CSS.
+   La tipografía interior escala con el ancho del marco (container query),
+   así los tres teléfonos se ven proporcionados sin ajustes a mano. */
+.flujo{ display:flex; align-items:flex-start; justify-content:center; gap:clamp(6px,.75vw,12px); width:100%; }
+.tel{ display:flex; flex-direction:column; align-items:center; gap:calc(var(--sp)*.5); flex:1 1 0; min-width:0; max-width:23vh; }
+.tel__paso{
+  font-size:var(--f-xs); letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-2); font-weight:700;
+}
+.tel__paso b{ color:var(--accent); }
+.telefono__marco{
+  container-type:inline-size;
+  position:relative; width:100%; aspect-ratio:9/18;
+  padding:clamp(4px,.6vh,7px); border-radius:clamp(14px,2.2vh,22px);
+  background:#0A0C0F;
+  box-shadow:0 14px 30px rgba(10,14,22,.20), inset 0 0 0 1px rgba(255,255,255,.07);
+}
+.telefono__isla{
+  position:absolute; z-index:2; top:clamp(7px,1vh,11px); left:50%; transform:translateX(-50%);
+  width:30%; height:clamp(7px,.95vh,11px); border-radius:999px; background:#0A0C0F;
+}
+.telefono__pantalla{
+  height:100%; overflow:hidden; border-radius:clamp(11px,1.7vh,17px);
+  background:#FBF7F1; color:#26211C;
+  display:flex; flex-direction:column; gap:.5em;
+  padding:2.4em .9em .9em;
+  font-size:9px; font-size:5.7cqw; line-height:1.32;
+}
+.app__estado{ display:flex; justify-content:space-between; color:#6B655C; font-size:.82em; font-weight:650; }
+.app__estado .señal{ display:flex; gap:1.5px; align-items:center; }
+.app__estado .señal i{ width:2.5px; height:5px; border-radius:1px; background:#6B655C; display:block; }
+.app__marca{
+  display:flex; align-items:center; gap:.4em; padding-bottom:.45em;
+  border-bottom:1px solid #E3DACD; color:#6B655C;
+  font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.88em;
+}
+.app__marca .punto{ width:.75em; height:.75em; border-radius:2px; background:#C9C0B4; }
+.app__marca svg{ height:1.1em; width:auto; fill:none; color:#26211C; }
+.app__lbl{ color:#6B655C; font-size:.88em; }
+.app__fila{
+  display:flex; justify-content:space-between; align-items:center; gap:.4em;
+  padding:.5em .6em; border:1px solid #E3DACD; border-radius:.7em; color:#6B655C; font-size:.92em;
+}
+.app__fila--activa{
+  border-color:rgba(27,95,217,.35); background:rgba(27,95,217,.07);
+  color:#26211C; font-weight:650;
+}
+.app__fila--activa em{ display:block; font-style:normal; color:#1B5FD9; font-size:.85em; font-weight:700; }
+.app__caso{ color:#6B655C; font-size:.9em; }
+.app__fallo{ font-family:var(--display); font-size:1.7em; font-weight:700; color:#A13D3D; letter-spacing:-.015em; line-height:1.05; }
+.app__btn{ text-align:center; border-radius:999px; padding:.55em .4em; font-weight:700; font-size:.92em; }
+.app__btn--primario{ background:#1B5FD9; color:#FBF7F1; }
+.app__btn--secundario{ border:1px solid #E3DACD; color:#26211C; }
+.app__pie{ text-align:center; color:#6B655C; font-size:.8em; }
+
+/* Datos considerados, en formato de trazabilidad */
+.rastro{ display:grid; gap:.5em; }
+.rastro li{ position:relative; padding-left:1.15em; }
+.rastro li::before{
+  content:""; position:absolute; left:0; top:.34em;
+  width:.45em; height:.45em; border-radius:50%; background:#1B5FD9;
+}
+.rastro li:not(:last-child)::after{
+  content:""; position:absolute; left:.2em; top:.9em; bottom:-.5em;
+  width:1px; background:rgba(27,95,217,.3);
+}
+.rastro b{ display:block; font-weight:650; font-size:.95em; }
+.rastro span{ color:#6B655C; font-size:.82em; }
+.tel figcaption{ color:var(--ink-2); font-size:var(--f-xs); }
+
 .mockup{
   border:2px dashed var(--line); border-radius:var(--r);
   aspect-ratio:16/9; width:100%;
@@ -463,8 +541,6 @@ main{ margin-left:var(--rail-w); }
   color:var(--accent); background:var(--accent-bg);
   border-radius:999px; padding:.22em .6em;
 }
-.col p{ font-size:var(--f-body); }
-.col p + p{ margin-top:.6em; }
 
 
 /* 04 · lo que la persona puede hacer */
@@ -553,6 +629,8 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 
 /* 06 · los cinco elementos de diferenciación */
 .dif{ display:grid; grid-template-columns:repeat(5,1fr); gap:calc(var(--sp)*.8); }
+.dif--3{ grid-template-columns:repeat(3,1fr); gap:calc(var(--sp)*1); }
+.dif--3 p{ font-size:var(--f-body); }
 .dif li{
   display:flex; flex-direction:column; gap:.45em;
   padding:calc(var(--sp)*1); background:var(--bg-alt);
@@ -572,11 +650,55 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
    07 y 08 · VIABILIDAD — slides de una sola cifra protagonista
    Regla: un único número grande por slide. Todo lo demás cede.
    ============================================================ */
-.cifra-lead{
-  font-family:var(--display);
-  font-size:clamp(15px,2.5vh,22px); line-height:1.3; font-weight:500;
-  color:var(--ink-2); max-width:44ch; letter-spacing:-.01em;
+/* 05a · dos preguntas separadas: por qué conviene / qué pasa si no */
+.contexto-compra{ margin-top:calc(var(--sp)*.7); color:var(--ink-2); font-size:var(--f-sm); }
+.compran{
+  margin-top:calc(var(--sp)*1.3);
+  display:grid; grid-template-columns:minmax(0,1.72fr) minmax(0,1fr);
+  gap:calc(var(--sp)*1.1); align-items:stretch;
 }
+.compran__col{
+  display:flex; flex-direction:column; gap:calc(var(--sp)*.6);
+  padding:calc(var(--sp)*1.3) calc(var(--sp)*1.4);
+  border:1px solid var(--line); border-radius:var(--r); background:var(--bg-alt);
+}
+.compran__col--peso{ border-color:var(--accent); background:var(--accent-bg); }
+/* mismo tratamiento que la línea de riesgo del cierre de 05b */
+.compran__col--riesgo{ border-color:var(--risk); background:var(--risk-bg); }
+.compran__lbl{
+  display:flex; align-items:center; gap:.5em;
+  font-size:var(--f-sm); letter-spacing:.16em; text-transform:uppercase; font-weight:700;
+}
+.compran__col--peso .compran__lbl{ color:var(--accent); }
+.compran__col--riesgo .compran__lbl{ color:var(--risk); }
+.compran__soporte{ color:var(--ink-2); font-size:var(--f-sm); line-height:1.45; }
+.compran__soporte b{ color:var(--ink); font-weight:650; }
+.compran__nota{ margin-top:auto; color:var(--ink-2); font-size:var(--f-xs); letter-spacing:.04em; }
+/* El protagonista de 05a se ajusta para caber en una línea dentro de su columna;
+   la cifra de riesgo va exactamente a la mitad de ese tamaño. */
+.cifra-hero.cifra-hero--compacta{ font-size:clamp(26px,8.3vh,60px); gap:clamp(6px,1vw,14px); }
+.cifra-media{
+  font-family:var(--display); font-weight:700; color:var(--risk);
+  font-size:clamp(13px,4.15vh,30px); letter-spacing:-.03em; line-height:1.1;
+  font-variant-numeric:tabular-nums;
+}
+.franja{
+  margin-top:calc(var(--sp)*1.3); padding-top:calc(var(--sp)*1.1);
+  border-top:1px solid var(--line);
+  display:flex; gap:calc(var(--sp)*1.2); align-items:baseline; flex-wrap:wrap;
+}
+.franja__lbl{
+  font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-2); font-weight:700; white-space:nowrap;
+}
+.franja__txt{ color:var(--ink); font-size:var(--f-body); }
+
+/* 05b · derivación del punto de equilibrio */
+.derivacion{
+  margin-top:calc(var(--sp)*.6); font-family:var(--mono);
+  font-size:var(--f-sm); color:var(--ink-2); letter-spacing:-.01em;
+}
+
 .cifra-hero{
   font-family:var(--display);
   display:flex; align-items:baseline; flex-wrap:wrap;
@@ -590,7 +712,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
 .cifra-hero .unidad{ font-size:.34em; font-weight:650; letter-spacing:-.01em; color:var(--ink); }
 .cifra-pie{
   margin-top:calc(var(--sp)*.8); font-size:clamp(13.5px,2.1vh,19px);
-  color:var(--ink); max-width:52ch;
+  color:var(--ink);
 }
 .cifra-pie b{ color:var(--accent); font-weight:650; }
 .cajas-3{
@@ -618,46 +740,31 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   background:var(--accent-bg); font-size:calc(var(--f-body)*1.05);
 }
 .remate .i{ font-size:18px; color:var(--accent); }
-.remate--riesgo{ border-color:var(--risk); background:var(--risk-bg); }
-.remate--riesgo .i{ color:var(--risk); }
-.remate--riesgo b{ color:var(--risk); font-weight:650; }
 
 /* ============================================================
    06 · CIERRE — checklist en dos columnas
    ============================================================ */
-.columnas{ display:grid; grid-template-columns:1fr 1fr; gap:calc(var(--sp)*1.4); }
-.col{
-  border:1px solid var(--line); border-radius:var(--r);
-  padding:calc(var(--sp)*1.3); background:var(--bg-alt);
-}
-.col__tit{
-  display:flex; align-items:center; gap:.6em; flex-wrap:wrap;
-  font-family:var(--display); font-size:var(--f-h3); font-weight:650; letter-spacing:-.01em;
-  padding-bottom:calc(var(--sp)*.8); margin-bottom:calc(var(--sp)*1.1);
-  border-bottom:1px solid var(--line);
-}
-.col--riesgo .col__tit{ border-bottom-color:var(--risk); }
-.check{ display:grid; gap:calc(var(--sp)*.9); }
-.check li{ display:grid; grid-template-columns:auto minmax(0,1fr); gap:.7em; align-items:start; }
-.check .i{ font-size:15px; stroke-width:1.9; margin-top:.15em; }
-.check--si .i{ color:var(--olive); }
-.check--no .i{ color:var(--risk); }
-.check .sub{ display:block; color:var(--ink-2); font-size:var(--f-sm); margin-top:.15em; }
-.pasos-sig{
-  margin-top:calc(var(--sp)*1.5); padding:calc(var(--sp)*1.2) calc(var(--sp)*1.4);
+.col--riesgo .cta{
+  margin-top:calc(var(--sp)*1.8); padding:calc(var(--sp)*1.4) calc(var(--sp)*1.6);
   border:1px solid var(--accent); border-radius:var(--r); background:var(--accent-bg);
-  display:flex; gap:calc(var(--sp)*1.1); align-items:center; flex-wrap:wrap;
+  display:flex; align-items:center; justify-content:center; gap:.9em; text-align:center;
+  font-size:calc(var(--f-body)*1.15); font-weight:650; line-height:1.4;
 }
-.pasos-sig .lbl{
-  display:inline-flex; align-items:center; gap:.5em;
-  font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
-  color:var(--accent); font-weight:700; white-space:nowrap;
-}
+.cta .i{ font-size:20px; color:var(--accent); flex:none; }
 
 /* ============================================================
    RESPONSIVE — el caso principal es proyección 16:9;
    esto sólo evita que se rompa en otros dispositivos.
    ============================================================ */
+/* En pantallas más chicas la columna de texto crece al envolverse:
+   los teléfonos se limitan por altura para que la sección no desborde. */
+@media (max-width: 1200px){
+  /* la columna de texto necesita más ancho para no envolverse en dos líneas */
+  .propuesta{ grid-template-columns:minmax(0,1fr) minmax(0,1.12fr); }
+  .telefono__marco{ width:min(100%, 21vh); }
+  .flujo{ gap:8px; }
+}
+
 @media (max-width: 900px){
   html{ scroll-padding-top:var(--nav-h); }
   main{ margin-left:0; }
@@ -678,7 +785,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   .progreso{ left:0; top:calc(var(--nav-h) - 2px); width:var(--p,0%); height:2px; transition:width .12s linear; }
         .cita-bloque{ grid-template-columns:1fr; }
   .comilla{ display:none; }
-  .cambio, .propuesta, .columnas, .cajas-3, .dif, .personas, .hallazgo, .tecnica{ grid-template-columns:1fr; }
+  .cambio, .propuesta, .cajas-3, .dif, .personas, .hallazgo, .tecnica, .compran{ grid-template-columns:1fr; }
   /* La cifra protagonista se escala por ancho: en vertical no cabe a la altura del viewport */
   .cifra-hero{ font-size:clamp(30px, 12vw, 58px); }
   .cita{ max-width:none; }
@@ -740,7 +847,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
     <li><a class="rail__item" href="#factibilidad"><span class="dash" aria-hidden="true"></span><span class="n">03b</span><span class="t">Factibilidad</span></a></li>
     <li><a class="rail__item" href="#diferenciacion"><span class="dash" aria-hidden="true"></span><span class="n">04</span><span class="t">Diferenciación</span></a></li>
     <li><a class="rail__item" href="#modelo-negocio"><span class="dash" aria-hidden="true"></span><span class="n">05a</span><span class="t">Viabilidad</span></a></li>
-    <li><a class="rail__item" href="#viabilidad"><span class="dash" aria-hidden="true"></span><span class="n">05b</span><span class="t">Sostenibilidad</span></a></li>
+    <li><a class="rail__item" href="#viabilidad"><span class="dash" aria-hidden="true"></span><span class="n">05b</span><span class="t">Modelo de negocio</span></a></li>
     <li><a class="rail__item" href="#cierre"><span class="dash" aria-hidden="true"></span><span class="n">06</span><span class="t">Cierre</span></a></li>
   </ol>
 
@@ -961,21 +1068,68 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
           <li><svg class="i"><use href="#i-users"/></svg><span>Pides revisión humana</span><span class="art">art. 8 bis</span></li>
           <li><svg class="i"><use href="#i-reloj"/></svg><span>Sigues el estado, hasta la respuesta</span><span class="art">30 días · art. 11</span></li>
         </ul>
+
+        <p class="nota-datos">
+          <svg class="i" aria-hidden="true"><use href="#i-chispa"/></svg>
+          <span>Tus datos nunca salen de los sistemas de la empresa. Clario coordina el proceso — no los reemplaza.</span>
+        </p>
       </div>
 
-      <figure class="mockup">
-        <svg class="i"><use href="#i-imagen"/></svg>
-        <figcaption class="mockup__txt">
-          mockup del prototipo aquí
-          <span class="mockup__pie">reemplazar con la captura real del prototipo</span>
-        </figcaption>
-      </figure>
-    </div>
+      <div class="flujo">
 
-    <p class="remate">
-      <svg class="i" aria-hidden="true"><use href="#i-chispa"/></svg>
-      <span>Tus datos nunca salen de los sistemas de la empresa. Clario coordina el proceso — no los reemplaza.</span>
-    </p>
+        <figure class="tel">
+          <figcaption class="tel__paso"><b>01</b> Inicio</figcaption>
+          <div class="telefono__marco">
+            <div class="telefono__isla" aria-hidden="true"></div>
+            <div class="telefono__pantalla">
+              <p class="app__estado"><span>9:41</span><span class="señal" aria-hidden="true"><i></i><i></i><i></i></span></p>
+              <p class="app__marca"><span class="punto" aria-hidden="true"></span>Banco</p>
+              <p class="app__lbl">Mis productos</p>
+              <p class="app__fila"><span>Cuenta corriente</span><span>›</span></p>
+              <p class="app__fila"><span>Tarjeta de crédito</span><span>›</span></p>
+              <p class="app__fila app__fila--activa"><span>Solicitud de crédito<em>Ver estado</em></span><span>›</span></p>
+            </div>
+          </div>
+        </figure>
+
+        <figure class="tel">
+          <figcaption class="tel__paso"><b>02</b> Resultado</figcaption>
+          <div class="telefono__marco">
+            <div class="telefono__isla" aria-hidden="true"></div>
+            <div class="telefono__pantalla">
+              <p class="app__estado"><span>9:41</span><span class="señal" aria-hidden="true"><i></i><i></i><i></i></span></p>
+              <p class="app__marca"><span class="punto" aria-hidden="true"></span>Solicitud</p>
+              <p class="app__caso">Crédito de consumo</p>
+              <p class="app__fallo">No aprobada</p>
+              <p class="app__lbl">Evaluamos tu solicitud con información de tus datos.</p>
+              <p class="app__btn app__btn--primario" style="margin-top:auto">Ver motivos del rechazo</p>
+              <p class="app__pie">Con Clario</p>
+            </div>
+          </div>
+        </figure>
+
+        <figure class="tel">
+          <figcaption class="tel__paso"><b>03</b> Motivos</figcaption>
+          <div class="telefono__marco">
+            <div class="telefono__isla" aria-hidden="true"></div>
+            <div class="telefono__pantalla">
+              <p class="app__estado"><span>9:41</span><span class="señal" aria-hidden="true"><i></i><i></i><i></i></span></p>
+              <p class="app__marca"><svg viewBox="0 0 96 76" aria-hidden="true"><use href="#logo-clario"/></svg>Clario</p>
+              <p class="app__lbl">Información considerada</p>
+              <ul class="rastro">
+                <li><b>Ingresos declarados</b><span>Formulario de solicitud</span></li>
+                <li><b>Historial de pagos</b><span>Registro interno del banco</span></li>
+                <li><b>Deuda vigente</b><span>Informe comercial</span></li>
+              </ul>
+              <p class="app__btn app__btn--secundario" style="margin-top:auto">Marcar un dato incorrecto</p>
+              <p class="app__btn app__btn--primario">Pedir revisión humana</p>
+              <p class="app__pie">Respuesta en 30 días</p>
+            </div>
+          </div>
+        </figure>
+
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1038,7 +1192,7 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   <div class="wrap">
     <header class="sec__head">
       <div class="sec__num"><span class="n">04</span><span class="sep">·</span><span>Referentes y diferenciación</span></div>
-      <h2 class="sec__title">Empezamos donde las otras terminan: en la decisión</h2>
+      <h2 class="sec__title sec__title--ancho">Empezamos donde las otras terminan: en la decisión</h2>
       <p class="sec__intro">Las demás esperan a que la persona encuentre el canal de privacidad. Clario aparece en la pantalla del rechazo, cuando todavía está mirando.</p>
     </header>
 
@@ -1102,36 +1256,34 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
   <div class="wrap">
     <div class="sec__num">
       <span class="n">05a</span><span class="sep">·</span><span>Viabilidad</span>
-      <span class="sep">·</span><span>Por qué nos compran</span>
     </div>
 
-    <h2 class="cifra-lead">Responder una solicitud de datos a mano le cuesta a la empresa</h2>
+    <h2 class="sec__title">No nos compran para cumplir la ley</h2>
+    <p class="contexto-compra">Firma el gerente de experiencia de cliente. Cumplimiento no compra, pero puede vetar.</p>
 
-    <p class="cifra-hero">
-      <span class="de">$77.500</span>
-      <svg class="i fl" aria-hidden="true"><use href="#i-flecha"/></svg>
-      <span class="a">$29.000</span>
-    </p>
-    <p class="cifra-pie"><b>Ahorro del 63%</b> por solicitud</p>
+    <div class="compran">
+      <section class="compran__col compran__col--peso">
+        <p class="compran__lbl"><svg class="i"><use href="#i-tendencia"/></svg>Por qué conviene</p>
+        <p class="cifra-hero cifra-hero--compacta">
+          <span class="de">$77.500</span>
+          <svg class="i fl" aria-hidden="true"><use href="#i-flecha"/></svg>
+          <span class="a">$29.000</span>
+        </p>
+        <p class="cifra-pie"><b>Ahorro del 63%</b> por solicitud</p>
+        <p class="compran__soporte"><b>4,5 horas</b> de trabajo entre atención, TI, cumplimiento y legal</p>
+        <p class="compran__nota">a 4.000 solicitudes al año</p>
+      </section>
 
-    <div class="cajas-3">
-      <article class="caja3">
-        <h3 class="caja3__tit"><svg class="i"><use href="#i-reloj"/></svg>El costo real</h3>
-        <p class="caja3__txt"><b>4,5 horas</b> de trabajo entre atención, TI, cumplimiento y legal</p>
-      </article>
-      <article class="caja3">
-        <h3 class="caja3__tit"><svg class="i"><use href="#i-alerta"/></svg>El riesgo real</h3>
-        <p class="caja3__txt">Una multa leve son <b>5.000 UTM</b>, cerca de $350 millones</p>
-      </article>
-      <article class="caja3">
-        <h3 class="caja3__tit"><svg class="i"><use href="#i-etiqueta"/></svg>Cómo cobramos</h3>
-        <p class="caja3__txt">Licencia base anual más un cargo por solicitud procesada</p>
-      </article>
+      <section class="compran__col compran__col--riesgo">
+        <p class="compran__lbl"><svg class="i"><use href="#i-alerta"/></svg>Qué pasa si no</p>
+        <p class="cifra-media">5.000 UTM ≈ $350 millones</p>
+        <p class="compran__soporte">Una multa leve cuesta más que atender 4.500 solicitudes a mano durante un año entero.</p>
+      </section>
     </div>
 
-    <p class="remate">
-      <svg class="i" aria-hidden="true"><use href="#i-chispa"/></svg>
-      <span>Una sola multa cuesta más que atender 4.500 solicitudes a mano durante un año entero.</span>
+    <p class="franja">
+      <span class="franja__lbl">Cómo cobramos</span>
+      <span class="franja__txt">Cobramos por solicitud procesada. Licencia base anual más uso, contratos a 3 y 5 años.</span>
     </p>
   </div>
 </section>
@@ -1151,21 +1303,21 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
      todos los escenarios salvo el optimista, y el mercado tiene techo. Esto no escala sin salir de Chile.
      Tiempo: ~1 minuto.
 -->
-<section class="sec sec--dark" id="viabilidad" data-nombre="Sostenibilidad">
+<section class="sec sec--dark" id="viabilidad" data-nombre="Modelo de negocio">
   <div class="deco" aria-hidden="true"><div class="deco__glow deco__glow--izq"></div></div>
 
   <div class="wrap">
     <div class="sec__num">
-      <span class="n">05b</span><span class="sep">·</span><span>Viabilidad</span>
-      <span class="sep">·</span><span>Sostenibilidad del modelo</span>
+      <span class="n">05b</span><span class="sep">·</span><span>Modelo de negocio</span>
     </div>
 
-    <h2 class="cifra-lead">Por qué se sostiene</h2>
+    <h2 class="sec__title">Cómo se sostiene el negocio</h2>
 
     <p class="cifra-hero">
       <span class="a">5</span><span class="unidad">clientes</span>
     </p>
-    <p class="cifra-pie">es el <b>punto de equilibrio</b>, en un mercado de 150 empresas obligadas</p>
+    <p class="cifra-pie">es el <b>punto de equilibrio</b>, en un mercado de ~140 empresas obligadas</p>
+    <p class="derivacion">$159.240.000 de costos fijos al año ÷ $36.700.000 de contribución por cliente</p>
 
     <div class="cajas-3">
       <article class="caja3">
@@ -1178,63 +1330,68 @@ tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
       </article>
       <article class="caja3">
         <h3 class="caja3__tit"><svg class="i"><use href="#i-escudo"/></svg>Defensa</h3>
-        <p class="caja3__txt">Una vez integrados, sacarnos es rehacer conexiones a sistemas heredados</p>
+        <p class="caja3__txt">Una vez integrados, sacarnos exige rehacer conectores, revalidar plantillas y migrar evidencia auditable</p>
       </article>
     </div>
-
-    <p class="remate remate--riesgo">
-      <svg class="i" aria-hidden="true"><use href="#i-alerta"/></svg>
-      <span>Lo decimos derecho: <b>el año 1 pierde plata</b> y el mercado tiene techo. Es un negocio de nicho, no un negocio infinito.</span>
-    </p>
   </div>
 </section>
 
-<!-- ===================== 07 · CIERRE (clara, tono alterno) =====================
-     GUIÓN (no se muestra en pantalla):
-     Sabemos que el dolor es real y se repite entre sectores, y que el negocio tiene un punto
-     de equilibrio alcanzable. Lo que no sabemos honestamente: cuánto volumen real vamos a ver
-     — no hay historial en Chile — y cómo va a reglamentar la Agencia la autenticación y la
-     revisión humana, que hoy depende de instrucciones que todavía no existen. Y hay un riesgo
-     de confianza que hay que validar: que sea la misma empresa que te rechazó la que gestione
-     tu revisión puede generar desconfianza en vez de tranquilidad. El siguiente paso no es
-     escalar, es cerrar un piloto real con un banco y medir esto con datos, no con supuestos.
+<!-- ===================== ARCHIVO: BALANCE DEL CIERRE =====================
+     El cierre pasó a ser una llamada a la acción. Se conserva aquí el
+     balance anterior, por si sirve para la ronda de preguntas.
+
+     LO QUE SABEMOS
+     · El dolor se repite en bancos y seguros — no es de un sector.
+     · El punto de equilibrio (5 clientes) es alcanzable.
+     · La arquitectura es viable sin centralizar datos personales.
+
+     LO QUE NO SABEMOS TODAVÍA
+     · Si el volumen de solicitudes real en Chile confirma el 15,6 a 1.
+     · Cómo definirá la Agencia la autenticación y la revisión humana
+       (reglamento pendiente, no ley firme).
+     · Si la persona confía en que la misma empresa que la rechazó
+       gestione su revisión.
 -->
-<section class="sec sec--alt" id="cierre" data-nombre="Cierre">
+
+<!-- ===================== 06 · CIERRE (clara, tono alterno) =====================
+     GUIÓN (no se muestra en pantalla):
+     Cerramos donde partimos: una decisión que te afecta y que hoy no puedes
+     entender ni cuestionar. Clario lleva el ejercicio de los derechos a ese
+     mismo lugar. El camino es corto y concreto: pilotear con una organización,
+     un tipo de decisión y un flujo de derechos; medir si de verdad facilita la
+     comprensión y baja el esfuerzo de gestión; y recién ahí escalar a más
+     decisiones y más sectores. Lo que necesitamos ahora no es escalar, es una
+     organización aliada que nos deje probarlo con casos reales.
+-->
+<section class="sec sec--alt sec--peso" id="cierre" data-nombre="Cierre">
   <div class="wrap">
     <header class="sec__head">
       <div class="sec__num"><span class="n">06</span><span class="sep">·</span><span>Cierre</span></div>
-      <h2 class="sec__title">Qué sabemos, qué no, y qué haríamos ahora</h2>
+      <h2 class="sec__title">Decisiones que se entienden. Derechos que se ejercen.</h2>
+      <p class="sec__intro">Clario lleva el ejercicio de los derechos al mismo lugar donde una decisión basada en datos afecta a una persona.</p>
     </header>
 
-    <div class="columnas">
-      <section class="col">
-        <h3 class="col__tit">
-          <span class="ico ico--olive"><svg class="i"><use href="#i-check"/></svg></span>
-          Lo que sabemos
-        </h3>
-        <ul class="check check--si">
-          <li><svg class="i"><use href="#i-check"/></svg><div>El dolor se repite en bancos y seguros — no es de un sector</div></li>
-          <li><svg class="i"><use href="#i-check"/></svg><div>El punto de equilibrio (5 clientes) es alcanzable</div></li>
-          <li><svg class="i"><use href="#i-check"/></svg><div>La arquitectura es viable sin centralizar datos personales</div></li>
-        </ul>
-      </section>
+    <ol class="dif dif--3">
+      <li>
+        <span class="np">01</span>
+        <h3>Pilotear</h3>
+        <p>Integrar Clario en una organización, para un tipo de decisión y un flujo de derechos.</p>
+      </li>
+      <li>
+        <span class="np">02</span>
+        <h3>Demostrar valor</h3>
+        <p>Medir si facilita la comprensión y el ejercicio de derechos, mientras reduce el esfuerzo de gestión y mejora la trazabilidad.</p>
+      </li>
+      <li>
+        <span class="np">03</span>
+        <h3>Escalar</h3>
+        <p>Automatizar integraciones e incorporar nuevas decisiones y módulos para servicios financieros, seguros, salud y otros sectores.</p>
+      </li>
+    </ol>
 
-      <section class="col col--riesgo">
-        <h3 class="col__tit">
-          <span class="ico" style="background:var(--risk-bg); color:var(--risk)"><svg class="i"><use href="#i-alerta"/></svg></span>
-          Lo que no sabemos todavía
-        </h3>
-        <ul class="check check--no">
-          <li><svg class="i"><use href="#i-alerta"/></svg><div>Si el volumen de solicitudes real en Chile confirma el 15,6 a 1</div></li>
-          <li><svg class="i"><use href="#i-alerta"/></svg><div>Cómo definirá la Agencia la autenticación y la revisión humana<span class="sub">Reglamento pendiente, no ley firme.</span></div></li>
-          <li><svg class="i"><use href="#i-alerta"/></svg><div>Si la persona confía en que la misma empresa que la rechazó gestione su revisión</div></li>
-        </ul>
-      </section>
-    </div>
-
-    <p class="pasos-sig">
-      <span class="lbl"><svg class="i"><use href="#i-flecha"/></svg>Próximo paso</span>
-      <span>Cerrar la primera integración piloto — MVP 0, un banco, un tipo de decisión — y medir si el ahorro y la confianza se sostienen con datos reales.</span>
+    <p class="cta">
+      <svg class="i" aria-hidden="true"><use href="#i-flecha"/></svg>
+      <span>Buscamos una organización aliada para implementar el primer piloto y convertir esta propuesta en una experiencia real.</span>
     </p>
   </div>
 </section>

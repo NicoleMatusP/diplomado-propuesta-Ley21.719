@@ -42,11 +42,14 @@
   --sombra:    none;
 
   /* Tipografía: 100% del sistema, sin descargas externas */
-  --sans: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --serif: ui-serif, Georgia, "Times New Roman", serif;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  /* Caras concretas, no la fuente del sistema: "ui-sans-serif" y "-apple-system"
+     heredan el ajuste de macOS "Texto en negrita" y se ven pesadas aunque el CSS
+     pida 400. Helvetica Neue y Arial existen en cualquier equipo y no lo hacen. */
+  --sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", Roboto, sans-serif;
+  --serif: Georgia, "Times New Roman", Times, serif;
+  --mono: Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
   /* Títulos y cifras: grotesca con carácter, distinta del cuerpo */
-  --display: "Space Grotesk", ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --display: "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* Escala fluida atada a la ALTURA del viewport:
      en 16:9 de 720px todo se comprime y evita el scroll interno. */
@@ -105,12 +108,17 @@ body{
   font-family:var(--sans);
   font-size:var(--f-body);
   line-height:1.5;
+  font-weight:400;
+  font-synthesis-weight:none;   /* si una fuente no trae el peso, que no lo simule */
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   transition:background-color .4s ease;
 }
 body[data-tema="oscuro"]{ background:#0A0C0F; }
 h1,h2,h3,p,ul,ol,figure,table,blockquote{ margin:0; }
+/* El texto corrido va en regular: la negrita queda para títulos,
+   cifras y etiquetas. El énfasis dentro de una frase se hace con color. */
+main b{ font-weight:400; }
 ul,ol{ padding:0; list-style:none; }
 
 /* Íconos: un sprite SVG en el propio documento, nada externo */
@@ -142,7 +150,7 @@ ul,ol{ padding:0; list-style:none; }
   display:flex; align-items:flex-start; gap:.6em;
   /* el nombre oficial es largo: menos tracking para que ocupe menos líneas */
   font-size:var(--f-xs); letter-spacing:.09em; text-transform:uppercase;
-  color:var(--ink-2); font-weight:650; line-height:1.45;
+  color:var(--ink-2); font-weight:600; line-height:1.45;
   transition:color .4s ease;
 }
 .rail__punto{
@@ -322,7 +330,7 @@ main{ margin-left:var(--rail-w); }
 .hero__equipo{
   display:flex; justify-content:center; align-items:center; flex-wrap:wrap;
   gap:.45em .85em; color:var(--ink);
-  font-size:clamp(13px,1.95vh,17px); font-weight:500; letter-spacing:-.005em;
+  font-size:clamp(13px,1.95vh,17px); letter-spacing:-.005em;
 }
 .hero__equipo .sep{ color:var(--ink-2); opacity:.5; }
 .hero__marks{ margin-top:calc(var(--sp)*1.1); display:flex; justify-content:center; gap:.5em; flex-wrap:wrap; }
@@ -346,13 +354,14 @@ main{ margin-left:var(--rail-w); }
 }
 .persona__lbl{
   display:flex; align-items:center; gap:.5em;
-  font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase; font-weight:700;
+  font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase; font-weight:600;
 }
 .persona__lbl .i{ font-size:14px; }
 .persona--user .persona__lbl{ color:var(--olive); }
 .persona--buyer .persona__lbl{ color:var(--accent); }
 .persona p{ font-size:var(--f-sm); line-height:1.5; }
-.persona b{ font-weight:650; }
+.persona--user b{ color:var(--olive); }
+.persona--buyer b{ color:var(--accent); }
 
 /* ============================================================
    03 · HALLAZGO — sección de mayor peso visual
@@ -376,7 +385,7 @@ main{ margin-left:var(--rail-w); }
   margin-top:calc(var(--sp)*1.1); display:flex; align-items:center; gap:.8em; flex-wrap:wrap;
   color:var(--ink-2); font-size:var(--f-sm);
 }
-.cita__meta .quien{ color:var(--ink); font-weight:600; }
+.cita__meta .quien{ color:var(--ink); }
 /* La voz a la izquierda, la evidencia a la derecha */
 .hallazgo{
   display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,.78fr);
@@ -388,7 +397,7 @@ main{ margin-left:var(--rail-w); }
 }
 .ficha__lbl{
   font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
-  color:var(--ink-2); font-weight:700;
+  color:var(--ink-2); font-weight:600;
 }
 .ficha__datos{ display:grid; gap:calc(var(--sp)*.7); }
 .ficha__datos li{
@@ -440,20 +449,20 @@ main{ margin-left:var(--rail-w); }
    ============================================================ */
 .art{
   display:inline-block; white-space:nowrap;
-  font-size:var(--f-xs); letter-spacing:.08em; font-weight:650;
+  font-size:var(--f-xs); letter-spacing:.08em; font-weight:500;
   color:var(--accent); background:var(--accent-bg);
   border-radius:999px; padding:.22em .6em;
 }
 .chips{ display:flex; flex-wrap:wrap; gap:.45em; align-items:center; }
 .chip{
-  font-size:var(--f-xs); letter-spacing:.06em; font-weight:600;
+  font-size:var(--f-xs); letter-spacing:.06em; font-weight:500;
   color:var(--accent); background:var(--accent-bg);
   border:1px solid var(--chip-bd); border-radius:999px; padding:.3em .75em;
 }
 .banda__fila{ display:flex; flex-wrap:wrap; gap:.5em .9em; align-items:center; }
 .banda__fila .lbl{
   font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
-  color:var(--ink-2); font-weight:700; white-space:nowrap;
+  color:var(--ink-2); font-weight:600; white-space:nowrap;
 }
 
 /* 03a · disparador y acciones */
@@ -500,12 +509,12 @@ main{ margin-left:var(--rail-w); }
 .mvp__lbl{
   display:inline-flex; align-items:center; gap:.5em;
   font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
-  color:var(--accent); font-weight:700;
+  color:var(--accent); font-weight:600;
 }
 .mvp p{ font-size:var(--f-sm); line-height:1.5; }
 .mvp__despues{ display:grid; gap:.4em; padding-top:calc(var(--sp)*.8); border-top:1px solid var(--line); }
 .mvp__despues li{ color:var(--ink-2); font-size:var(--f-sm); }
-.mvp__despues b{ color:var(--ink); font-weight:650; }
+.mvp__despues b{ color:var(--ink); }
 
 /* 04 · los elementos de diferenciación */
 .dif{ display:grid; grid-template-columns:repeat(5,1fr); gap:calc(var(--sp)*.8); }
@@ -542,7 +551,7 @@ main{ margin-left:var(--rail-w); }
   flex:0 0 auto; width:min(48%, 26vh);
 }
 .tel figcaption{
-  color:var(--ink-2); font-size:var(--f-xs); letter-spacing:.12em; text-transform:uppercase; font-weight:650;
+  color:var(--ink-2); font-size:var(--f-xs); letter-spacing:.12em; text-transform:uppercase; font-weight:600;
 }
 .telefono__marco{
   container-type:inline-size;
@@ -640,12 +649,12 @@ main{ margin-left:var(--rail-w); }
 .compran__col--riesgo{ border-color:var(--risk); background:var(--risk-bg); }
 .compran__lbl{
   display:flex; align-items:center; gap:.5em;
-  font-size:var(--f-sm); letter-spacing:.16em; text-transform:uppercase; font-weight:700;
+  font-size:var(--f-sm); letter-spacing:.16em; text-transform:uppercase; font-weight:600;
 }
 .compran__col--peso .compran__lbl{ color:var(--accent); }
 .compran__col--riesgo .compran__lbl{ color:var(--risk); }
 .compran__soporte{ color:var(--ink-2); font-size:var(--f-sm); line-height:1.45; }
-.compran__soporte b{ color:var(--ink); font-weight:650; }
+.compran__soporte b{ color:var(--accent); }
 .compran__nota{ margin-top:auto; color:var(--ink-2); font-size:var(--f-xs); letter-spacing:.04em; }
 /* El protagonista de 05a se ajusta para caber en una línea dentro de su columna;
    la cifra de riesgo va exactamente a la mitad de ese tamaño. */
@@ -662,7 +671,7 @@ main{ margin-left:var(--rail-w); }
 }
 .franja__lbl{
   font-size:var(--f-xs); letter-spacing:.16em; text-transform:uppercase;
-  color:var(--ink-2); font-weight:700; white-space:nowrap;
+  color:var(--ink-2); font-weight:600; white-space:nowrap;
 }
 .franja__txt{ color:var(--ink); font-size:var(--f-body); }
 
@@ -687,7 +696,7 @@ main{ margin-left:var(--rail-w); }
   margin-top:calc(var(--sp)*.8); font-size:clamp(13.5px,2.1vh,19px);
   color:var(--ink);
 }
-.cifra-pie b{ color:var(--accent); font-weight:650; }
+.cifra-pie b{ color:var(--accent); }
 .cajas-3{
   margin-top:calc(var(--sp)*2); display:grid; grid-template-columns:repeat(3,1fr);
   gap:calc(var(--sp)*.9);
@@ -700,11 +709,11 @@ main{ margin-left:var(--rail-w); }
 .caja3__tit{
   display:flex; align-items:center; gap:.55em;
   font-size:var(--f-sm); letter-spacing:.14em; text-transform:uppercase;
-  color:var(--accent); font-weight:700;
+  color:var(--accent); font-weight:600;
 }
 .caja3__tit .i{ font-size:15px; }
 .caja3__txt{ font-size:var(--f-body); line-height:1.45; }
-.caja3__txt b{ font-weight:650; }
+.caja3__txt b{ color:var(--accent); }
 .remate{
   margin-top:calc(var(--sp)*2);
   display:flex; align-items:center; gap:.9em;
@@ -721,7 +730,7 @@ main{ margin-left:var(--rail-w); }
   margin-top:calc(var(--sp)*2.4); padding:calc(var(--sp)*1.4) calc(var(--sp)*1.6);
   border:1px solid var(--accent); border-radius:var(--r); background:var(--accent-bg);
   display:flex; align-items:center; justify-content:center; gap:.9em; text-align:center;
-  font-size:calc(var(--f-body)*1.15); font-weight:650; line-height:1.4;
+  font-size:calc(var(--f-body)*1.15); line-height:1.45;
 }
 .cta .i{ font-size:20px; color:var(--accent); flex:none; }
 
